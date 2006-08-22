@@ -1,0 +1,25 @@
+block AODOutput = {
+  untracked vstring outputCommands = {
+     "drop *"
+
+#Tracks with extra and hits
+   , "keep recoTrack_ctfAnalyticalTracks_*_*"
+   , "keep recoTrack_ctfWithMaterialTracks_*_*"
+   , "keep recoTrack_rsAnalyticalTracks_*_*"
+   , "keep recoTrack_rsWithMaterialTracks_*_*"
+
+#Calo Towers. WARNING: the name does not match our conventions
+   , "keep *_towerMaker_*_*"
+   , "keep *_caloTowers_*_*"
+
+#Jets
+   , "keep *_iterativeCone5BasicJets_*_*"
+   , "keep *_iterativeCone5CaloJets_*_*"
+   , "keep *_ktCaloJets_*_*"
+   , "keep *_midPointCone5CaloJets_*_*"
+   , "keep *_midPointCone7CaloJets_*_*"
+
+#MEt
+   , "keep *_met_*_*"
+  }
+}

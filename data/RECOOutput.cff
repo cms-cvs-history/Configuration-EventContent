@@ -1,0 +1,24 @@
+block RECOOutput = {
+  untracked vstring outputCommands = {
+     "drop *"
+
+#Tracks with extra and hits
+   , "keep *_ctfAnalyticalTracks_*_*"
+   , "keep *_ctfWithMaterialTracks_*_*"
+   , "keep *_rsAnalyticalTracks_*_*"
+   , "keep *_rsWithMaterialTracks_*_*"
+
+#Calo Towers. WARNING: the name does not match our conventions
+   , "keep *_towerMaker_*_*"
+   , "keep *_caloTowers_*_*"
+
+#Jets
+   , "keep *_iterativeCone5BasicJets_*_*"
+   , "keep *_iterativeCone5CaloJets_*_*"
+   , "keep *_ktCaloJets_*_*"
+   , "keep *_midPointCone5CaloJets_*_*"
+   , "keep *_midPointCone7CaloJets_*_*"
+#MEt
+   ,  "keep *_met_*_*"
+  }
+}
