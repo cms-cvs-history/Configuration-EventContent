@@ -1,0 +1,8 @@
+block AlCaOutput = {
+  untracked vstring outputCommands = {
+     "drop *"
+
+#Tracks with extra and hits
+   , "keep *_AlCaReco_*_*"
+  }
+}
