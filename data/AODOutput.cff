@@ -47,5 +47,8 @@ block AODOutput = {
 
 #MEt
    ,  "keep *_met_*_*"
+
+# HLT Trigger
+  , "keep *_TriggerResults _*_*"
   }
 }

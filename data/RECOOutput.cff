@@ -5,11 +5,11 @@ block RECOOutput = {
 # *** Low level Objects ***
 
 #Si Pixel hits
-   , "keep *_siPixelClusters_*_*"
+#   , "keep *_siPixelClusters_*_*"
    , "keep *_siPixelRecHits_*_*"
 
 #Si Strip hits
-   , "keep *_siStripClusters_*_*"
+#   , "keep *_siStripClusters_*_*"
    , "keep *_siStripRecHits_*_*"
    , "keep *_siStripMatchedRecHits_*_*"
 
@@ -72,5 +72,8 @@ block RECOOutput = {
 
 #MEt
    ,  "keep *_met_*_*"
+
+# HLT Trigger
+  , "keep *_TriggerResults _*_*"
   }
 }
