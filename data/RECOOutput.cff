@@ -19,8 +19,9 @@ block RECOOutput = {
    , "keep *_ecalPreshowerRecHit_*_*"
    , "keep *_ecalRecHit_*_*"
 
-#Calo Towers
-   , "keep *_towerMaker_*_*"
+#Hcal hits
+   , "keep *_hfreco_*_*"
+   , "keep *_horeco_*_*"
 
 #Muon hits
    , "keep *_dt1DRecHits_*_*"
@@ -50,6 +51,9 @@ block RECOOutput = {
    , "keep *_correctedIslandBarrelSuperClusters_*_*"
    , "keep *_hybridSuperClusters_*_*"
    , "keep *_correctedHybridSuperClusters_*_*"
+
+#Calo Towers
+   , "keep *_towerMaker_*_*"
 
 #Electrons
    , "keep *_pixelMatchElectrons_*_*"
