@@ -2,15 +2,41 @@ block AODOutput = {
   untracked vstring outputCommands = {
      "drop *"
 
-#Tracks with extra and hits
-   , "keep recoTrack_ctfAnalyticalTracks_*_*"
-   , "keep recoTrack_ctfWithMaterialTracks_*_*"
-   , "keep recoTrack_rsAnalyticalTracks_*_*"
-   , "keep recoTrack_rsWithMaterialTracks_*_*"
-
-#Calo Towers. WARNING: the name does not match our conventions
+#Calo Towers
    , "keep *_towerMaker_*_*"
+
+#Tracks with extra and hits
+   , "keep recoTracks_ctfAnalyticalTracks_*_*"
+   , "keep recoTracks_ctfWithMaterialTracks_*_*"
+   , "keep recoTracks_rsAnalyticalTracks_*_*"
+   , "keep recoTracks_rsWithMaterialTracks_*_*"
+
+#Vertices
+   , "keep recoTracks_pixelTracks_*_*"
+   , "keep *_pixelVertices_*_*"
+   , "keep *_offlinePrimaryVerticesFromCTFTracks_*_*"
+   , "keep *_offlinePrimaryVerticesFromRSTracks_*_*"
+
+#Ecal clusters
+   , "keep *_islandBarrelBasicClusters_*_*"
+   , "keep *_islanSuperClusters_*_*"
+   , "keep *_correctedIslandBarrelSuperClusters_*_*"
+   , "keep *_hybridSuperClusters_*_*"
+   , "keep *_correctedHybridSuperClusters_*_*"
+
+#Electrons
+   , "keep *_pixelMatchElectrons_*_*"
+   , "keep *_siStripElectrons_*_*"
+
+#Photons
+   , "keep *_photons_*_*"
+   , "keep *_correctedPhotons_*_*"
+
+#Calo Tower Candidates
    , "keep *_caloTowers_*_*"
+
+#Muons
+   , "keep *_StandAloneMuon_*_*"
 
 #Jets
    , "keep *_iterativeCone5BasicJets_*_*"
@@ -20,6 +46,6 @@ block AODOutput = {
    , "keep *_midPointCone7CaloJets_*_*"
 
 #MEt
-   , "keep *_met_*_*"
+   ,  "keep *_met_*_*"
   }
 }

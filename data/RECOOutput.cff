@@ -2,15 +2,66 @@ block RECOOutput = {
   untracked vstring outputCommands = {
      "drop *"
 
+# *** Low level Objects ***
+
+#Si Pixel hits
+   , "keep *_siPixelClusters_*_*"
+   , "keep *_siPixelRecHits_*_*"
+
+#Si Strip hits
+   , "keep *_siStripClusters_*_*"
+   , "keep *_siStripRecHits_*_*"
+   , "keep *_siStripMatchedRecHits_*_*"
+
+#Ecal hits
+   , "keep *_ecalPreshowerRecHit_*_*"
+   , "keep *_ecalRecHit_*_*"
+
+#Calo Towers
+   , "keep *_towerMaker_*_*"
+
+#Muon hits
+   , "keep *_dt1DRecHits_*_*"
+   , "keep *_dt2DSegments_*_*"
+   , "keep *_dt4DSegments_*_*"
+   , "keep *_csc2DRecHits_*_*"
+   , "keep *_csc2DSegments_*_*"
+   , "keep *_rpcRecHits_*_*"
+
+# *** High level Objects ***
+
 #Tracks with extra and hits
    , "keep *_ctfAnalyticalTracks_*_*"
    , "keep *_ctfWithMaterialTracks_*_*"
    , "keep *_rsAnalyticalTracks_*_*"
    , "keep *_rsWithMaterialTracks_*_*"
 
-#Calo Towers. WARNING: the name does not match our conventions
-   , "keep *_towerMaker_*_*"
+#Vertices
+   , "keep *_pixelTracks_*_*"
+   , "keep *_pixelVertices_*_*"
+   , "keep *_offlinePrimaryVerticesFromCTFTracks_*_*"
+   , "keep *_offlinePrimaryVerticesFromRSTracks_*_*"
+
+#Ecal clusters
+   , "keep *_islandBarrelBasicClusters_*_*"
+   , "keep *_islanSuperClusters_*_*"
+   , "keep *_correctedIslandBarrelSuperClusters_*_*"
+   , "keep *_hybridSuperClusters_*_*"
+   , "keep *_correctedHybridSuperClusters_*_*"
+
+#Electrons
+   , "keep *_pixelMatchElectrons_*_*"
+   , "keep *_siStripElectrons_*_*"
+
+#Photons
+   , "keep *_photons_*_*"
+   , "keep *_correctedPhotons_*_*"
+
+#Calo Tower Candidates
    , "keep *_caloTowers_*_*"
+
+#Muons
+   , "keep *_StandAloneMuon_*_*"
 
 #Jets
    , "keep *_iterativeCone5BasicJets_*_*"
@@ -18,6 +69,7 @@ block RECOOutput = {
    , "keep *_ktCaloJets_*_*"
    , "keep *_midPointCone5CaloJets_*_*"
    , "keep *_midPointCone7CaloJets_*_*"
+
 #MEt
    ,  "keep *_met_*_*"
   }
