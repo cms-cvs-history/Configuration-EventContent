@@ -48,6 +48,10 @@ block AODOutput = {
 #MEt
    ,  "keep *_met_*_*"
 
+#b/tau tagging
+   , "keep *_coneIsolation_*_*"
+   , "keep *_trackCounting_*_*"
+
 # HLT Trigger
   , "keep *_TriggerResults _*_*"
   }

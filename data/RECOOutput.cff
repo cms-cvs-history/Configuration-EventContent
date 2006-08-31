@@ -4,12 +4,14 @@ block RECOOutput = {
 
 # *** Low level Objects ***
 
-#Si Pixel hits
+#Tracking clusters are disabled
 #   , "keep *_siPixelClusters_*_*"
+#   , "keep *_siStripClusters_*_*"
+
+#Si Pixel hits
    , "keep *_siPixelRecHits_*_*"
 
 #Si Strip hits
-#   , "keep *_siStripClusters_*_*"
    , "keep *_siStripRecHits_*_*"
    , "keep *_siStripMatchedRecHits_*_*"
 
@@ -72,6 +74,10 @@ block RECOOutput = {
 
 #MEt
    ,  "keep *_met_*_*"
+
+#b/tau tagging
+   , "keep *_coneIsolation_*_*"
+   , "keep *_trackCounting_*_*"
 
 # HLT Trigger
   , "keep *_TriggerResults _*_*"
