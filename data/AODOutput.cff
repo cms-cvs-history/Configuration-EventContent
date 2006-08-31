@@ -19,7 +19,7 @@ block AODOutput = {
 
 #Ecal clusters
    , "keep *_islandBarrelBasicClusters_*_*"
-   , "keep *_islanSuperClusters_*_*"
+   , "keep *_islandSuperClusters_*_*"
    , "keep *_correctedIslandBarrelSuperClusters_*_*"
    , "keep *_hybridSuperClusters_*_*"
    , "keep *_correctedHybridSuperClusters_*_*"
