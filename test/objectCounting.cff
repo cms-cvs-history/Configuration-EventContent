@@ -42,10 +42,14 @@ module ic5BasicJetCounter = BasicJetCounter {
   string src ="iterativeCone5BasicJets"
 }
 
+module eventContent = EventContentAnalyzer {
+}
+
 path objectCounting = { 
   ctfTrackCounter, 
   pixelElectronCounter, stripElectronCounter,
   photonCounter, correctedPhotonCounter,
   muonTrackCounter,
-  ic5CaloJetCounter, ic5BasicJetCounter, mp5CaloJetCounter, mp7CaloJetCounter, ktCaloJetCounter
+  ic5CaloJetCounter, ic5BasicJetCounter, mp5CaloJetCounter, mp7CaloJetCounter, ktCaloJetCounter,
+  eventContent 
 }
