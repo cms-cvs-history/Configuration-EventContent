@@ -27,8 +27,8 @@ block AODOutput = {
    , "keep *_correctedHybridSuperClusters_*_*"
 
 #Electrons
-   , "keep *_pixelMatchElectrons_*_*"
-   , "keep *_siStripElectrons_*_*"
+   , "keep recoElectrons_pixelMatchElectrons_*_*"
+   , "keep recoElectrons_siStripElectrons_*_*"
 
 #Photons
    , "keep *_photons_*_*"
