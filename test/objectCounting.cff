@@ -18,8 +18,12 @@ module correctedPhotonCounter = PhotonCounter {
   string src = "correctedPhotons"
 }
 
-module muonTrackCounter = TrackCounter { 
+module standAloneMuonTrackCounter = TrackCounter { 
   string src = "StandAloneMuon" 
+}
+
+module globalMuonTrackCounter = TrackCounter { 
+  string src = "GlobalMuon" 
 }
 
 module ic5CaloJetCounter = CaloJetCounter {
@@ -42,14 +46,10 @@ module ic5BasicJetCounter = BasicJetCounter {
   string src ="iterativeCone5BasicJets"
 }
 
-module eventContent = EventContentAnalyzer {
-}
-
 path objectCounting = { 
   ctfTrackCounter, 
   pixelElectronCounter, stripElectronCounter,
   photonCounter, correctedPhotonCounter,
-  muonTrackCounter,
-  ic5CaloJetCounter, ic5BasicJetCounter, mp5CaloJetCounter, mp7CaloJetCounter, ktCaloJetCounter,
-  eventContent 
+  standAloneMuonTrackCounter, globalMuonTrackCounter,
+  ic5CaloJetCounter, ic5BasicJetCounter, mp5CaloJetCounter, mp7CaloJetCounter, ktCaloJetCounter
 }

@@ -10,9 +10,11 @@ block AODOutput = {
    , "keep recoTracks_ctfWithMaterialTracks_*_*"
    , "keep recoTracks_rsAnalyticalTracks_*_*"
    , "keep recoTracks_rsWithMaterialTracks_*_*"
+   , "keep recoTracks_GsfElectrons_*_*"
+   , "keep recoTracks_egammaCTFFinaleFitWithMaterial_*_*"
+   , "keep recoTracks_pixelTracks_*_*"
 
 #Vertices
-   , "keep recoTracks_pixelTracks_*_*"
    , "keep *_pixelVertices_*_*"
    , "keep *_offlinePrimaryVerticesFromCTFTracks_*_*"
    , "keep *_offlinePrimaryVerticesFromRSTracks_*_*"
@@ -37,6 +39,7 @@ block AODOutput = {
 
 #Muons
    , "keep *_StandAloneMuon_*_*"
+   , "keep *_GlobalMuon_*_*"
 
 #Jets
    , "keep *_iterativeCone5BasicJets_*_*"
@@ -46,7 +49,7 @@ block AODOutput = {
    , "keep *_midPointCone7CaloJets_*_*"
 
 #MEt
-   ,  "keep *_met_*_*"
+   , "keep *_met_*_*"
 
 #b/tau tagging
    , "keep *_coneIsolation_*_*"

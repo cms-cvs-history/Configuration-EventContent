@@ -39,9 +39,11 @@ block RECOOutput = {
    , "keep *_ctfWithMaterialTracks_*_*"
    , "keep *_rsAnalyticalTracks_*_*"
    , "keep *_rsWithMaterialTracks_*_*"
+   , "keep *_GsfElectrons_*_*"
+   , "keep *_egammaCTFFinaleFitWithMaterial_*_*"
+   , "keep *_pixelTracks_*_*"
 
 #Vertices
-   , "keep *_pixelTracks_*_*"
    , "keep *_pixelVertices_*_*"
    , "keep *_offlinePrimaryVerticesFromCTFTracks_*_*"
    , "keep *_offlinePrimaryVerticesFromRSTracks_*_*"
@@ -69,7 +71,8 @@ block RECOOutput = {
 
 #Muons
    , "keep *_StandAloneMuon_*_*"
-
+   , "keep *_GlobalMuon_*_*"
+	
 #Jets
    , "keep *_iterativeCone5BasicJets_*_*"
    , "keep *_iterativeCone5CaloJets_*_*"
@@ -78,7 +81,7 @@ block RECOOutput = {
    , "keep *_midPointCone7CaloJets_*_*"
 
 #MEt
-   ,  "keep *_met_*_*"
+   , "keep *_met_*_*"
 
 #b/tau tagging
    , "keep *_coneIsolation_*_*"
