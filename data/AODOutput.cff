@@ -57,6 +57,6 @@ block AODOutput = {
    , "keep *_trackCounting_*_*"
 
 # HLT Trigger
-  , "keep *_TriggerResults _*_*"
+  , "keep *_TriggerResults_*_*"
   }
 }
