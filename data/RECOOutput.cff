@@ -60,7 +60,8 @@ block RECOOutput = {
 
 #Electrons
    , "keep recoElectrons_pixelMatchElectrons_*_*"
-   , "keep recoElectrons_siStripElectrons_*_*"
+   , "keep recoElectrons_siStripElectronToTrackAssociator_*_*"
+   , "keep recoSiStripElectrons_siStripElectrons_*_*"
 
 #Photons
    , "keep *_photons_*_*"
@@ -88,6 +89,6 @@ block RECOOutput = {
    , "keep *_trackCounting_*_*"
 
 # HLT Trigger
-  , "keep *_TriggerResults _*_*"
+   , "keep *_TriggerResults _*_*"
   }
 }
