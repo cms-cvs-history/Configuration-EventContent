@@ -1,0 +1,7 @@
+block MuonsOutput = {
+  untracked vstring outputCommands = {
+#Muons
+    "keep *_StandAloneMuon_*_*",
+    "keep *_GlobalMuon_*_*"
+  }
+}

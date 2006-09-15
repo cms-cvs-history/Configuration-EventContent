@@ -1,0 +1,6 @@
+block TriggerOutput = {
+  untracked vstring outputCommands = {
+# HLT Trigger
+    "keep *_TriggerResults_*_*"
+  }
+}

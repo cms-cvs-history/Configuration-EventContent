@@ -1,0 +1,12 @@
+block ElectronsPhotonsOutput = {
+  untracked vstring outputCommands = {
+#Electrons
+    "keep recoElectrons_pixelMatchElectrons_*_*",
+    "keep recoElectrons_siStripElectronToTrackAssociator_*_*",
+    "keep recoSiStripElectrons_siStripElectrons_*_*",
+
+#Photons
+    "keep *_photons_*_*",
+    "keep *_correctedPhotons_*_*"
+  }
+}

@@ -1,94 +1,27 @@
+include "Configuration/EventContent/data/RecHitsOutput.cff"
+include "Configuration/EventContent/data/RECOTracksOutput.cff"
+include "Configuration/EventContent/data/VerticesOutput.cff"
+include "Configuration/EventContent/data/EcalClustersOutput.cff"
+include "Configuration/EventContent/data/CaloTowersOutput.cff"
+include "Configuration/EventContent/data/ElectronsPhotonsOutput.cff"
+include "Configuration/EventContent/data/MuonsOutput.cff"
+include "Configuration/EventContent/data/JetsMetOutput.cff"
+include "Configuration/EventContent/data/BTauTagsOutput.cff"
+include "Configuration/EventContent/data/TriggerOutput.cff"
+
 block RECOOutput = {
   untracked vstring outputCommands = {
      "drop *"
-
-# *** Low level Objects ***
-
-#Tracking clusters are disabled
-#   , "keep *_siPixelClusters_*_*"
-#   , "keep *_siStripClusters_*_*"
-
-#Si Pixel hits
-   , "keep *_siPixelRecHits_*_*"
-
-#Si Strip hits
-   , "keep *_siStripRecHits_*_*"
-   , "keep *_siStripMatchedRecHits_*_*"
-
-#Ecal hits
-   , "keep *_ecalPreshowerRecHit_*_*"
-   , "keep *_ecalRecHit_*_*"
-
-#Hcal hits
-   , "keep *_hbhereco_*_*"
-   , "keep *_hfreco_*_*"
-   , "keep *_horeco_*_*"
-
-#Muon hits
-   , "keep *_dt1DRecHits_*_*"
-   , "keep *_dt2DSegments_*_*"
-   , "keep *_dt4DSegments_*_*"
-   , "keep *_csc2DRecHits_*_*"
-   , "keep *_csc2DSegments_*_*"
-   , "keep *_rpcRecHits_*_*"
-
-# *** High level Objects ***
-
-#Tracks with extra and hits
-   , "keep *_ctfAnalyticalTracks_*_*"
-   , "keep *_ctfWithMaterialTracks_*_*"
-   , "keep *_rsAnalyticalTracks_*_*"
-   , "keep *_rsWithMaterialTracks_*_*"
-   , "keep *_GsfElectrons_*_*"
-   , "keep *_egammaCTFFinaleFitWithMaterial_*_*"
-   , "keep *_pixelTracks_*_*"
-
-#Vertices
-   , "keep *_pixelVertices_*_*"
-   , "keep *_offlinePrimaryVerticesFromCTFTracks_*_*"
-   , "keep *_offlinePrimaryVerticesFromRSTracks_*_*"
-
-#Ecal clusters
-   , "keep *_islandBarrelBasicClusters_*_*"
-   , "keep *_islandSuperClusters_*_*"
-   , "keep *_correctedIslandBarrelSuperClusters_*_*"
-   , "keep *_hybridSuperClusters_*_*"
-   , "keep *_correctedHybridSuperClusters_*_*"
-
-#Calo Towers
-   , "keep *_towerMaker_*_*"
-
-#Electrons
-   , "keep recoElectrons_pixelMatchElectrons_*_*"
-   , "keep recoElectrons_siStripElectronToTrackAssociator_*_*"
-   , "keep recoSiStripElectrons_siStripElectrons_*_*"
-
-#Photons
-   , "keep *_photons_*_*"
-   , "keep *_correctedPhotons_*_*"
-
-#Calo Tower Candidates
-   , "keep *_caloTowers_*_*"
-
-#Muons
-   , "keep *_StandAloneMuon_*_*"
-   , "keep *_GlobalMuon_*_*"
-	
-#Jets
-   , "keep *_iterativeCone5BasicJets_*_*"
-   , "keep *_iterativeCone5CaloJets_*_*"
-   , "keep *_ktCaloJets_*_*"
-   , "keep *_midPointCone5CaloJets_*_*"
-   , "keep *_midPointCone7CaloJets_*_*"
-
-#MEt
-   , "keep *_met_*_*"
-
-#b/tau tagging
-   , "keep *_coneIsolation_*_*"
-   , "keep *_trackCounting_*_*"
-
-# HLT Trigger
-   , "keep *_TriggerResults_*_*"
   }
 }
+
+replace RECOOutput.outputCommands += RecHitsOutput.outputCommands
+replace RECOOutput.outputCommands += RECOTracksOutput.outputCommands
+replace RECOOutput.outputCommands += VerticesOutput.outputCommands
+replace RECOOutput.outputCommands += EcalClustersOutput.outputCommands
+replace RECOOutput.outputCommands += CaloTowersOutput.outputCommands
+replace RECOOutput.outputCommands += ElectronsPhotonsOutput.outputCommands
+replace RECOOutput.outputCommands += MuonsOutput.outputCommands
+replace RECOOutput.outputCommands += JetsMetOutput.outputCommands
+replace RECOOutput.outputCommands += BTauTagsOutput.outputCommands
+replace RECOOutput.outputCommands += TriggerOutput.outputCommands

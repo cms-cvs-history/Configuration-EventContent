@@ -1,0 +1,8 @@
+block VerticesOutput = {
+  untracked vstring outputCommands = {
+#Vertices
+    "keep *_pixelVertices_*_*",
+    "keep *_offlinePrimaryVerticesFromCTFTracks_*_*",
+    "keep *_offlinePrimaryVerticesFromRSTracks_*_*"
+  }
+}

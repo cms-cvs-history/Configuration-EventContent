@@ -1,0 +1,6 @@
+block CaloTowersOutput = {
+  untracked vstring outputCommands = {
+#Calo Towers
+    "keep *_towerMaker_*_*"
+  }
+}

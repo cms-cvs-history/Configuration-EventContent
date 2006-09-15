@@ -1,0 +1,12 @@
+block RECOTracksOutput = {
+  untracked vstring outputCommands = {
+#Tracks with extra and hits
+    "keep *_ctfAnalyticalTracks_*_*",
+    "keep *_ctfWithMaterialTracks_*_*",
+    "keep *_rsAnalyticalTracks_*_*",
+    "keep *_rsWithMaterialTracks_*_*",
+    "keep *_GsfElectrons_*_*",
+    "keep *_egammaCTFFinaleFitWithMaterial_*_*",
+    "keep *_pixelTracks_*_*"
+  }
+}

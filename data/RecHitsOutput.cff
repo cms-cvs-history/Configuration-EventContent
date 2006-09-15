@@ -1,0 +1,27 @@
+block RecHitsOutput = {
+  untracked vstring outputCommands = {
+#Si Pixel hits
+    "keep *_siPixelRecHits_*_*",
+
+#Si Strip hits
+    "keep *_siStripRecHits_*_*",
+    "keep *_siStripMatchedRecHits_*_*",
+
+#Ecal hits
+    "keep *_ecalPreshowerRecHit_*_*",
+    "keep *_ecalRecHit_*_*",
+
+#Hcal hits
+    "keep *_hbhereco_*_*",
+    "keep *_hfreco_*_*",
+    "keep *_horeco_*_*",
+
+#Muon hits
+    "keep *_dt1DRecHits_*_*",
+    "keep *_dt2DSegments_*_*",
+    "keep *_dt4DSegments_*_*",
+    "keep *_csc2DRecHits_*_*",
+    "keep *_csc2DSegments_*_*",
+    "keep *_rpcRecHits_*_*"
+  }
+}
