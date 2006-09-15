@@ -1,0 +1,10 @@
+include "Configuration/EventContent/data/AODOutput.cff"
+include "Configuration/EventContent/data/HepMCOutput.cff"
+
+block AODSIMOutput = {
+  untracked vstring outputCommands = {
+  }
+}
+
+replace AODSIMOutput.outputCommands += AODOutput.outputCommands
+replace AODSIMOutput.outputCommands += HepMCOutput.outputCommands

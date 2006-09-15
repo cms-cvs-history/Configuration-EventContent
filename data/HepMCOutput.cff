@@ -1,0 +1,6 @@
+block HepMCOutput = {
+  untracked vstring outputCommands = {
+    "keep edmHepMCProduct_source_*_*",
+    "keep edmHepMCProduct_VtxSmeared_*_*"
+  }
+}
