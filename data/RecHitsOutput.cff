@@ -21,7 +21,7 @@ block RecHitsOutput = {
     "keep *_dt2DSegments_*_*",
     "keep *_dt4DSegments_*_*",
     "keep *_csc2DRecHits_*_*",
-    "keep *_csc2DSegments_*_*",
+    "keep *_cscSegments_*_*",
     "keep *_rpcRecHits_*_*"
   }
 }
