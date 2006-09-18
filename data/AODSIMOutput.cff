@@ -1,5 +1,6 @@
 include "Configuration/EventContent/data/AODOutput.cff"
 include "Configuration/EventContent/data/HepMCOutput.cff"
+include "Configuration/EventContent/data/GenJetsMetOutput.cff"
 
 block AODSIMOutput = {
   untracked vstring outputCommands = {
@@ -8,3 +9,4 @@ block AODSIMOutput = {
 
 replace AODSIMOutput.outputCommands += AODOutput.outputCommands
 replace AODSIMOutput.outputCommands += HepMCOutput.outputCommands
+replace AODSIMOutput.outputCommands += GenJetsMetOutput.outputCommands
