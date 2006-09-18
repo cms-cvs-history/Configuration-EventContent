@@ -1,0 +1,6 @@
+block G4TracksVerticesOutput = {
+  untracked vstring outputCommands = {
+    "keep SimTracks_g4SimHits_*_*",
+    "keep SimVertexs_g4SimHits_*_*"
+  }
+}

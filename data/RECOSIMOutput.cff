@@ -1,6 +1,6 @@
 include "Configuration/EventContent/data/RECOOutput.cff"
 include "Configuration/EventContent/data/HepMCOutput.cff"
-include "Configuration/EventContent/data/G4SimHitsOutput.cff"
+include "Configuration/EventContent/data/G4TracksVerticesOutput.cff"
 include "Configuration/EventContent/data/GenJetsMetOutput.cff"
 
 block RECOSIMOutput = {
@@ -10,5 +10,5 @@ block RECOSIMOutput = {
 
 replace RECOSIMOutput.outputCommands += RECOOutput.outputCommands
 replace RECOSIMOutput.outputCommands += HepMCOutput.outputCommands
-replace RECOSIMOutput.outputCommands += G4SimHitsOutput.outputCommands
+replace RECOSIMOutput.outputCommands += G4TracksVerticesOutput.outputCommands
 replace RECOSIMOutput.outputCommands += GenJetsMetOutput.outputCommands
