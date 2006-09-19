@@ -26,6 +26,19 @@ struct sortBySecond {
   }
 };
 
+size_t GetTotalSize( TBranch * b );
+
+size_t GetTotalSize( TObjArray * branches ) {
+  size_t result = 0, n = branches->GetEntries();
+  for( size_t i = 0; i < n; ++ i ) 
+    result += GetTotalSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+  return result;
+}
+
+size_t GetTotalSize( TBranch * b ) {
+  return b->GetTotalSize() + GetTotalSize( b->GetListOfBranches() );
+}
+
 int main( int argc, char * argv[] ) {
   using namespace boost::program_options;
   using namespace std;
@@ -95,11 +108,12 @@ int main( int argc, char * argv[] ) {
   typedef vector<pair<string, unsigned long> > BranchVector;
   BranchVector v;
   size_t n =  branches->GetEntries();
-  cout << fileName << "has " << n << " branches" << endl;
+  cout << fileName << " has " << n << " branches" << endl;
   for( size_t i = 0; i < n; ++i ) {
     TBranch * b = dynamic_cast<TBranch*>( branches->At( i ) );
     assert( b != 0 );
-    v.push_back( make_pair( b->GetName(), b->GetTotalSize() ) );
+    size_t s = GetTotalSize( b );
+    v.push_back( make_pair( b->GetName(), s ) );
   }
   sort( v.begin(), v.end(), sortBySecond<string, unsigned long>() );
   size_t totalSize = 0;
@@ -108,6 +122,6 @@ int main( int argc, char * argv[] ) {
 	 << b->first << endl;
     totalSize += b->second;
   }
-  cout << "total branch size: " << totalSize << " bytes" << endl;
+  cout << "total branches size: " << totalSize << " bytes" << endl;
   return 0;
 }
