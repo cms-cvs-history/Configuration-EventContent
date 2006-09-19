@@ -1,3 +1,10 @@
+/** measure branch sizes
+ *
+ * \author Luca Lista, INFN
+ *
+ * \version $Revision$
+ *
+ */
 #include <boost/shared_ptr.hpp>
 #include <boost/program_options.hpp>
 #include <string>
@@ -5,19 +12,29 @@
 #include <vector>
 #include <utility>
 #include <cassert>
+#include <TROOT.h>
 #include <TFile.h>
 #include <TTree.h>
 #include <TSystem.h>
 #include <TObjArray.h>
 #include <TBranch.h>
+#include <TH1.h>
+#include <TCanvas.h>
+#include <Riostream.h>
 #include "FWCore/FWLite/src/AutoLibraryLoader.h"
 
 static const char * const kHelpOpt = "help";
 static const char * const kHelpCommandOpt = "help,h";
 static const char * const kDataFileOpt = "data-file";
 static const char * const kDataFileCommandOpt = "data-file,d";
-static const char * const kNoAutoLoadOpt ="no-auto-loader";
-static const char * const kNoAutoLoadCommandOpt ="no-auto-loader,n";
+static const char * const kAutoLoadOpt ="auto-loader";
+static const char * const kAutoLoadCommandOpt ="auto-loader,a";
+static const char * const kPlotOpt ="plot";
+static const char * const kPlotCommandOpt ="plot,p";
+static const char * const kSavePlotOpt ="save-plot";
+static const char * const kSavePlotCommandOpt ="save-plot,s";
+static const char * const kPlotTopOpt ="plot-top";
+static const char * const kPlotTopCommandOpt ="plot-top,t";
 
 template<typename A, typename B>
 struct sortBySecond {
@@ -26,18 +43,44 @@ struct sortBySecond {
   }
 };
 
-size_t GetTotalSize( TBranch * b );
+size_t GetTotalSize( TBranch * );
+
+size_t GetBasketSize( TBranch * );
+
+size_t GetBasketSize( TObjArray * branches ) {
+  size_t result = 0, n = branches->GetEntries();
+  for( size_t i = 0; i < n; ++ i ) {
+    result += GetBasketSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+  }
+  return result;
+}
+
+size_t GetBasketSize( TBranch * b ) {
+  size_t result = 0;
+  if ( b != 0 ) {
+    if ( b->GetZipBytes() > 0 ) 
+      result = b->GetTotBytes();
+    result += GetBasketSize( b->GetListOfBranches() );
+  }
+  return result;
+}
+
+size_t GetTotalSize( TBranch * br ) {
+  TBuffer buf( TBuffer::kWrite, 10000 );
+  TBranch::Class()->WriteBuffer( buf, br );
+  return GetBasketSize( br ) + buf.Length();
+}
 
 size_t GetTotalSize( TObjArray * branches ) {
   size_t result = 0, n = branches->GetEntries();
-  for( size_t i = 0; i < n; ++ i ) 
+  for( size_t i = 0; i < n; ++ i )
     result += GetTotalSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
   return result;
 }
 
-size_t GetTotalSize( TBranch * b ) {
-  return b->GetTotalSize() + GetTotalSize( b->GetListOfBranches() );
-}
+size_t GetTotalSize( TTree *t ) {
+  return GetTotalSize( t->GetListOfBranches() );
+} 
 
 int main( int argc, char * argv[] ) {
   using namespace boost::program_options;
@@ -51,8 +94,11 @@ int main( int argc, char * argv[] ) {
 
   desc.add_options()
     ( kHelpCommandOpt, "produce help message" )
-    ( kNoAutoLoadCommandOpt, "don't do autimatic library loading" )
-    ( kDataFileCommandOpt, value<string>(), "data file" );
+    ( kAutoLoadCommandOpt, "automatic library loading (avoid root warnings)" )
+    ( kDataFileCommandOpt, value<string>(), "data file" )
+    ( kPlotCommandOpt, value<string>(), "summary plot" )
+    ( kPlotTopCommandOpt, value<int>(), "plot only the <arg> top size branches" )
+    ( kSavePlotCommandOpt, value<string>(), "save plot to a root file" );
 
   positional_options_description p;
 
@@ -77,7 +123,7 @@ int main( int argc, char * argv[] ) {
     return 7001;
   }
   
-  if( vm.count( kNoAutoLoadOpt ) == 0 ) {
+  if( vm.count( kAutoLoadOpt ) != 0 ) {
     gSystem->Load( "libFWCoreFWLite" );
     AutoLibraryLoader::enable();
   }
@@ -107,21 +153,50 @@ int main( int argc, char * argv[] ) {
   }
   typedef vector<pair<string, unsigned long> > BranchVector;
   BranchVector v;
-  size_t n =  branches->GetEntries();
+  const size_t n =  branches->GetEntries();
   cout << fileName << " has " << n << " branches" << endl;
   for( size_t i = 0; i < n; ++i ) {
     TBranch * b = dynamic_cast<TBranch*>( branches->At( i ) );
     assert( b != 0 );
+    string name( b->GetName() );
+    if ( name == "EventAux" ) continue;
     size_t s = GetTotalSize( b );
     v.push_back( make_pair( b->GetName(), s ) );
   }
   sort( v.begin(), v.end(), sortBySecond<string, unsigned long>() );
+  bool plot = ( vm.count( kPlotOpt ) > 0 );
+  bool save = ( vm.count( kSavePlotOpt ) > 0 );
+  int top = n;
+  if( vm.count( kPlotTopOpt ) > 0 ) top = vm[ kPlotTopOpt ].as<int>();
+  TH1F histo( "histo", "branch sizes", top, -0.5, - 0.5 + top );
+  int x = 0;
   size_t totalSize = 0;
   for( BranchVector::const_iterator b = v.begin(); b != v.end(); ++ b ) {
-    cout << b->second << " bytes :" 
+    size_t s = b->second;
+    cout << s << " bytes :" 
 	 << b->first << endl;
-    totalSize += b->second;
+    if ( plot ) histo.Fill( x ++, s );
+    totalSize += s;
   }
-  cout << "total branches size: " << totalSize << " bytes" << endl;
+  cout << "total branches size: " << GetTotalSize( events ) << " bytes" << endl;
+
+  histo.SetBarWidth( 0.45 );
+  histo.SetBarOffset( 0.1 );
+  histo.SetFillColor( kRed );
+  if( plot ) {
+    string plotName = vm[kPlotOpt].as<string>();
+    gROOT->SetBatch();
+    gROOT->SetStyle("Plain");
+    histo.Draw( "bar1" );
+
+    TCanvas c;
+    c.SaveAs( plotName.c_str() );
+  }
+  if ( save ) {
+    string fileName = vm[kSavePlotOpt].as<string>();
+    TFile f( fileName.c_str(), "RECREATE" );
+    histo.Write();
+    f.Close();
+  }
   return 0;
 }
