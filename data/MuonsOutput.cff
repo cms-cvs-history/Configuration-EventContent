@@ -1,7 +1,7 @@
 block MuonsOutput = {
   untracked vstring outputCommands = {
-#Muons
-    "keep *_StandAloneMuon_*_*",
-    "keep *_GlobalMuon_*_*"
+#Muons (includinx track extras, rec-hits and candidates)
+    "keep *_standAloneMuon_*_*",
+    "keep *_globalMuon_*_*"
   }
 }

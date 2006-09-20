@@ -19,11 +19,11 @@ module correctedPhotonCounter = PhotonCounter {
 }
 
 module standAloneMuonTrackCounter = TrackCounter { 
-  string src = "StandAloneMuon" 
+  string src = "standAloneMuons" 
 }
 
 module globalMuonTrackCounter = TrackCounter { 
-  string src = "GlobalMuon" 
+  string src = "globalMuons" 
 }
 
 module ic5CaloJetCounter = CaloJetCounter {
