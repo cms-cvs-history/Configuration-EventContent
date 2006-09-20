@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.3 $
+ * \version $Revision: 1.4 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -99,7 +99,7 @@ int main( int argc, char * argv[] ) {
     ( kDataFileCommandOpt, value<string>(), "data file" )
     ( kPlotCommandOpt, value<string>(), "summary plot" )
     ( kPlotTopCommandOpt, value<int>(), "plot only the <arg> top size branches" )
-    ( kSavePlotCommandOpt, value<string>(), "save plot to a root file" );
+    ( kSavePlotCommandOpt, value<string>(), "save plot into root file <arg>" );
 
   positional_options_description p;
 
@@ -123,6 +123,8 @@ int main( int argc, char * argv[] ) {
     cerr << programName << ": no data file given" << endl;
     return 7001;
   }
+
+  gROOT->SetBatch();
   
   if( vm.count( kAutoLoadOpt ) != 0 ) {
     gSystem->Load( "libFWCoreFWLite" );
@@ -169,34 +171,33 @@ int main( int argc, char * argv[] ) {
   bool save = ( vm.count( kSavePlotOpt ) > 0 );
   int top = n;
   if( vm.count( kPlotTopOpt ) > 0 ) top = vm[ kPlotTopOpt ].as<int>();
-  TH1F histo( "histo", "branch sizes", top, -0.5, - 0.5 + top );
+  TH1F histo( "histo", "branch sizes (uncompressed)", top, -0.5, - 0.5 + top );
   int x = 0;
   size_t totalSize = 0;
+  TAxis * xAxis = histo.GetXaxis();
   for( BranchVector::const_iterator b = v.begin(); b != v.end(); ++ b ) {
     string name = b->first.c_str();
     size_t s = b->second;
     cout << s << " bytes :" 
 	 << b->first << endl;
-    if ( plot ) {
-      histo.GetXaxis()->SetBinLabel( x + 1, name.c_str() );
-      histo.Fill( x ++, s );
-    }
+    xAxis->SetBinLabel( x + 1, name.c_str() );
+    histo.Fill( x ++, s );
     totalSize += s;
   }
-  cout << "total branches size: " << GetTotalSize( events ) << " bytes" << endl;
-
-  histo.SetBarWidth( 0.45 );
-  histo.SetBarOffset( 0.1 );
+  cout << "total branches size: " << GetTotalSize( events ) << " bytes (uncompressed)" << endl;
+  xAxis->SetLabelOffset( -0.3 );
+  xAxis->LabelsOption( "d" );
+  xAxis->SetLabelSize( 0.035 );
+  histo.GetYaxis()->SetTitle( "Bytes" );
   histo.SetFillColor( kRed );
+  histo.SetLineWidth( 2 );
   if( plot ) {
     string plotName = vm[kPlotOpt].as<string>();
-    gROOT->SetBatch();
-    gROOT->SetStyle("Plain");
-    gStyle->SetOptStat(kFALSE);
-
-    histo.Draw( "bar1" );
-
+    gROOT->SetStyle( "Plain" );
+    gStyle->SetOptStat( kFALSE );
+    gStyle->SetOptLogy();
     TCanvas c;
+    histo.Draw();
     c.SaveAs( plotName.c_str() );
   }
   if ( save ) {
