@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision$
+ * \version $Revision: 1.3 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -16,6 +16,7 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TSystem.h>
+#include <TStyle.h>
 #include <TObjArray.h>
 #include <TBranch.h>
 #include <TH1.h>
@@ -172,10 +173,14 @@ int main( int argc, char * argv[] ) {
   int x = 0;
   size_t totalSize = 0;
   for( BranchVector::const_iterator b = v.begin(); b != v.end(); ++ b ) {
+    string name = b->first.c_str();
     size_t s = b->second;
     cout << s << " bytes :" 
 	 << b->first << endl;
-    if ( plot ) histo.Fill( x ++, s );
+    if ( plot ) {
+      histo.GetXaxis()->SetBinLabel( x + 1, name.c_str() );
+      histo.Fill( x ++, s );
+    }
     totalSize += s;
   }
   cout << "total branches size: " << GetTotalSize( events ) << " bytes" << endl;
@@ -187,6 +192,8 @@ int main( int argc, char * argv[] ) {
     string plotName = vm[kPlotOpt].as<string>();
     gROOT->SetBatch();
     gROOT->SetStyle("Plain");
+    gStyle->SetOptStat(kFALSE);
+
     histo.Draw( "bar1" );
 
     TCanvas c;
