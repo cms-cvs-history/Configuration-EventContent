@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.4 $
+ * \version $Revision: 1.5 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -180,8 +180,10 @@ int main( int argc, char * argv[] ) {
     size_t s = b->second;
     cout << s << " bytes :" 
 	 << b->first << endl;
-    xAxis->SetBinLabel( x + 1, name.c_str() );
-    histo.Fill( x ++, s );
+    if ( x < top ) {
+      xAxis->SetBinLabel( x + 1, name.c_str() );
+      histo.Fill( x ++, s );
+    }
     totalSize += s;
   }
   cout << "total branches size: " << GetTotalSize( events ) << " bytes (uncompressed)" << endl;
