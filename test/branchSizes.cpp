@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.5 $
+ * \version $Revision: 1.6 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -23,6 +23,8 @@
 #include <TCanvas.h>
 #include <Riostream.h>
 #include "FWCore/FWLite/src/AutoLibraryLoader.h"
+#include <utility>
+using namespace std;
 
 static const char * const kHelpOpt = "help";
 static const char * const kHelpCommandOpt = "help,h";
@@ -37,49 +39,66 @@ static const char * const kSavePlotCommandOpt ="save-plot,s";
 static const char * const kPlotTopOpt ="plot-top";
 static const char * const kPlotTopCommandOpt ="plot-top,t";
 
-template<typename A, typename B>
-struct sortBySecond {
-  bool operator()( const std::pair<A, B> & lhs, const std::pair<A, B> & rhs ) const {
-    return lhs.second > rhs.second;
+template<typename T>
+struct sortByCompressedSize {
+  bool operator()( const T & lhs, const T & rhs ) const {
+    return lhs.second.second > rhs.second.second;
   }
 };
 
-size_t GetTotalSize( TBranch * );
+pair<size_t, size_t> GetTotalSize( TBranch * );
 
-size_t GetBasketSize( TBranch * );
+pair<size_t, size_t> GetBasketSize( TBranch * );
 
-size_t GetBasketSize( TObjArray * branches ) {
-  size_t result = 0, n = branches->GetEntries();
+pair<size_t, size_t> GetBasketSize( TObjArray * branches ) {
+  pair<size_t, size_t> result = make_pair( 0, 0 );
+  size_t n = branches->GetEntries();
   for( size_t i = 0; i < n; ++ i ) {
-    result += GetBasketSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+    pair<size_t, size_t> size = GetBasketSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+    result.first += size.first;
+    result.second += size.second;
   }
   return result;
 }
 
-size_t GetBasketSize( TBranch * b ) {
-  size_t result = 0;
+pair<size_t, size_t> GetBasketSize( TBranch * b ) {
+  pair<size_t, size_t> result = make_pair( 0, 0 );
   if ( b != 0 ) {
-    if ( b->GetZipBytes() > 0 ) 
-      result = b->GetTotBytes();
-    result += GetBasketSize( b->GetListOfBranches() );
+    if ( b->GetZipBytes() > 0 ) {
+      result.first = b->GetTotBytes();
+      result.second = b->GetZipBytes();
+    }
+    pair<size_t, size_t> size = GetBasketSize( b->GetListOfBranches() );
+    result.first += size.first;
+    result.second += size.second;
   }
   return result;
 }
 
-size_t GetTotalSize( TBranch * br ) {
+pair<size_t, size_t> GetTotalSize( TBranch * br ) {
   TBuffer buf( TBuffer::kWrite, 10000 );
   TBranch::Class()->WriteBuffer( buf, br );
-  return GetBasketSize( br ) + buf.Length();
+  pair<size_t,size_t> size = GetBasketSize( br );
+  size.first += buf.Length();
+  return size;
 }
 
-size_t GetTotalSize( TObjArray * branches ) {
-  size_t result = 0, n = branches->GetEntries();
-  for( size_t i = 0; i < n; ++ i )
-    result += GetTotalSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+pair<size_t, size_t> GetTotalSize( TObjArray * branches ) {
+  pair<size_t, size_t> result = make_pair( 0, 0 );
+  size_t n = branches->GetEntries();
+  for( size_t i = 0; i < n; ++ i ) {
+    pair<size_t, size_t> size = GetTotalSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+    result.first += size.first;
+    result.second += size.second;
+  }
   return result;
 }
 
-size_t GetTotalSize( TTree *t ) {
+pair<size_t, size_t > GetTotalSize( TTree *t ) {
+  return make_pair( t->GetTotBytes(), t->GetZipBytes() );
+} 
+
+pair<size_t, size_t > GetTotalBranchSize( TTree *t ) {
   return GetTotalSize( t->GetListOfBranches() );
 } 
 
@@ -154,7 +173,7 @@ int main( int argc, char * argv[] ) {
 	 << " contains no branches" << endl;
     return 7004;
   }
-  typedef vector<pair<string, unsigned long> > BranchVector;
+  typedef vector<pair<string, pair< size_t, size_t > > > BranchVector;
   BranchVector v;
   const size_t n =  branches->GetEntries();
   cout << fileName << " has " << n << " branches" << endl;
@@ -163,49 +182,66 @@ int main( int argc, char * argv[] ) {
     assert( b != 0 );
     string name( b->GetName() );
     if ( name == "EventAux" ) continue;
-    size_t s = GetTotalSize( b );
+    pair<size_t, size_t> s = GetTotalSize( b );
     v.push_back( make_pair( b->GetName(), s ) );
   }
-  sort( v.begin(), v.end(), sortBySecond<string, unsigned long>() );
+  sort( v.begin(), v.end(), sortByCompressedSize<pair<string, pair<size_t,size_t> > >() );
   bool plot = ( vm.count( kPlotOpt ) > 0 );
   bool save = ( vm.count( kSavePlotOpt ) > 0 );
   int top = n;
   if( vm.count( kPlotTopOpt ) > 0 ) top = vm[ kPlotTopOpt ].as<int>();
-  TH1F histo( "histo", "branch sizes (uncompressed)", top, -0.5, - 0.5 + top );
+  TH1F uncompressed( "uncompressed", "branch sizes (uncompressed)", top, -0.5, - 0.5 + top );
+  TH1F compressed( "compressed", "branch sizes (compressed)", top, -0.5, - 0.5 + top );
   int x = 0;
-  size_t totalSize = 0;
-  TAxis * xAxis = histo.GetXaxis();
+  TAxis * cxAxis = compressed.GetXaxis();
+  TAxis * uxAxis = uncompressed.GetXaxis();
   for( BranchVector::const_iterator b = v.begin(); b != v.end(); ++ b ) {
     string name = b->first.c_str();
-    size_t s = b->second;
-    cout << s << " bytes :" 
+    pair<size_t, size_t> s = b->second;
+    cout << s.second << "/" << s.first << " bytes (" 
+	 << double( s.first ) / double( s.second ) << ") : "
 	 << b->first << endl;
     if ( x < top ) {
-      xAxis->SetBinLabel( x + 1, name.c_str() );
-      histo.Fill( x ++, s );
+      cxAxis->SetBinLabel( x + 1, name.c_str() );
+      uxAxis->SetBinLabel( x + 1, name.c_str() );
+      compressed.Fill( x, s.second );
+      uncompressed.Fill( x, s.first );
+      x++;
     }
-    totalSize += s;
   }
-  cout << "total branches size: " << GetTotalSize( events ) << " bytes (uncompressed)" << endl;
-  xAxis->SetLabelOffset( -0.3 );
-  xAxis->LabelsOption( "d" );
-  xAxis->SetLabelSize( 0.035 );
-  histo.GetYaxis()->SetTitle( "Bytes" );
-  histo.SetFillColor( kRed );
-  histo.SetLineWidth( 2 );
+  pair<size_t, size_t> branchSize = GetTotalBranchSize( events );
+  cout << "total branches size: " << branchSize.first << " bytes (uncompressed), " 
+       << branchSize.second << " bytes (compressed)"<< endl;
+  pair<size_t, size_t> totalSize = GetTotalSize( events );
+  cout << "total tree size: " << totalSize.first << " bytes (uncompressed), " 
+       << totalSize.second << " bytes (compressed)"<< endl;
+  cxAxis->SetLabelOffset( -0.3 );
+  cxAxis->LabelsOption( "d" );
+  cxAxis->SetLabelSize( 0.035 );
+  uxAxis->SetLabelOffset( -0.3 );
+  uxAxis->LabelsOption( "d" );
+  uxAxis->SetLabelSize( 0.035 );
+  compressed.GetYaxis()->SetTitle( "Bytes" );
+  compressed.SetFillColor( kBlue );
+  compressed.SetLineWidth( 2 );
+  uncompressed.GetYaxis()->SetTitle( "Bytes" );
+  uncompressed.SetFillColor( kRed );
+  uncompressed.SetLineWidth( 2 );
   if( plot ) {
     string plotName = vm[kPlotOpt].as<string>();
     gROOT->SetStyle( "Plain" );
     gStyle->SetOptStat( kFALSE );
     gStyle->SetOptLogy();
     TCanvas c;
-    histo.Draw();
+    uncompressed.Draw();
+    compressed.Draw( "same" );
     c.SaveAs( plotName.c_str() );
   }
   if ( save ) {
     string fileName = vm[kSavePlotOpt].as<string>();
     TFile f( fileName.c_str(), "RECREATE" );
-    histo.Write();
+    compressed.Write();
+    uncompressed.Write();
     f.Close();
   }
   return 0;
