@@ -1,11 +1,15 @@
 block RecHitsOutput = {
   untracked vstring outputCommands = {
+#Tracking clusters are disabled
+   "keep *_siPixelClusters_*_*",
+   "keep *_siStripClusters_*_*",
+
 #Si Pixel hits
-    "keep *_siPixelRecHits_*_*",
+#    "keep *_siPixelRecHits_*_*",
 
 #Si Strip hits
-    "keep *_siStripRecHits_*_*",
-    "keep *_siStripMatchedRecHits_*_*",
+#    "keep *_siStripRecHits_*_*",
+#    "keep *_siStripMatchedRecHits_*_*",
 
 #Ecal hits
     "keep *_ecalPreshowerRecHit_*_*",
