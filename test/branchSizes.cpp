@@ -49,7 +49,9 @@ size_type GetBasketSize( TObjArray * branches ) {
   size_type result = make_pair( 0, 0 );
   size_t n = branches->GetEntries();
   for( size_t i = 0; i < n; ++ i ) {
-    size_type size = GetBasketSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+    TBranch * b = dynamic_cast<TBranch*>( branches->At( i ) );
+    assert( b != 0 );
+    size_type size = GetBasketSize( b );
     result.first += size.first;
     result.second += size.second;
   }
@@ -90,7 +92,11 @@ size_type GetTotalSize( TObjArray * branches ) {
 }
 
 size_type GetTotalSize( TTree *t ) {
-  return make_pair( t->GetTotBytes(), t->GetZipBytes() );
+  size_t total = t->GetTotBytes();
+  TBuffer b(TBuffer::kWrite, 10000);
+  TTree::Class()->WriteBuffer(b, t);
+  total += b.Length();
+  return make_pair( total, t->GetZipBytes() );
 } 
 
 size_type GetTotalBranchSize( TTree *t ) {
@@ -219,9 +225,9 @@ int main( int argc, char * argv[] ) {
       x++;
     }
   }
-  size_type branchSize = GetTotalBranchSize( events );
-  cout << "total branches size: " << branchSize.first << " bytes (uncompressed), " 
-       << branchSize.second << " bytes (compressed)"<< endl;
+  //  size_type branchSize = GetTotalBranchSize( events );
+  //  cout << "total branches size: " << branchSize.first << " bytes (uncompressed), " 
+  //       << branchSize.second << " bytes (compressed)"<< endl;
   size_type totalSize = GetTotalSize( events );
   cout << "total tree size: " << totalSize.first << " bytes (uncompressed), " 
        << totalSize.second << " bytes (compressed)"<< endl;
