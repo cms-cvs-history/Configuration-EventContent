@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.6 $
+ * \version $Revision: 1.7 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -41,41 +41,48 @@ static const char * const kPlotTopCommandOpt ="plot-top,t";
 
 template<typename T>
 struct sortByCompressedSize {
-  bool operator()( const T & lhs, const T & rhs ) const {
-    return lhs.second.second > rhs.second.second;
+  bool operator()( const T & t1, const T & t2 ) const {
+    size_t s1 = t1.second.second, s2 = t2.second.second;
+    if ( s1 == 0 && s2 == 0 ) {
+      s1 = t1.second.first;
+      s2 = t2.second.first;
+    }
+    return s1 > s2;
   }
 };
 
-pair<size_t, size_t> GetTotalSize( TBranch * );
+typedef pair<size_t, size_t> size_type;
 
-pair<size_t, size_t> GetBasketSize( TBranch * );
+size_type GetTotalSize( TBranch * );
 
-pair<size_t, size_t> GetBasketSize( TObjArray * branches ) {
-  pair<size_t, size_t> result = make_pair( 0, 0 );
+size_type GetBasketSize( TBranch * );
+
+size_type GetBasketSize( TObjArray * branches ) {
+  size_type result = make_pair( 0, 0 );
   size_t n = branches->GetEntries();
   for( size_t i = 0; i < n; ++ i ) {
-    pair<size_t, size_t> size = GetBasketSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+    size_type size = GetBasketSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
     result.first += size.first;
     result.second += size.second;
   }
   return result;
 }
 
-pair<size_t, size_t> GetBasketSize( TBranch * b ) {
-  pair<size_t, size_t> result = make_pair( 0, 0 );
+size_type GetBasketSize( TBranch * b ) {
+  size_type result = make_pair( 0, 0 );
   if ( b != 0 ) {
     if ( b->GetZipBytes() > 0 ) {
       result.first = b->GetTotBytes();
       result.second = b->GetZipBytes();
     }
-    pair<size_t, size_t> size = GetBasketSize( b->GetListOfBranches() );
+    size_type size = GetBasketSize( b->GetListOfBranches() );
     result.first += size.first;
     result.second += size.second;
   }
   return result;
 }
 
-pair<size_t, size_t> GetTotalSize( TBranch * br ) {
+size_type GetTotalSize( TBranch * br ) {
   TBuffer buf( TBuffer::kWrite, 10000 );
   TBranch::Class()->WriteBuffer( buf, br );
   pair<size_t,size_t> size = GetBasketSize( br );
@@ -83,11 +90,11 @@ pair<size_t, size_t> GetTotalSize( TBranch * br ) {
   return size;
 }
 
-pair<size_t, size_t> GetTotalSize( TObjArray * branches ) {
-  pair<size_t, size_t> result = make_pair( 0, 0 );
+size_type GetTotalSize( TObjArray * branches ) {
+  size_type result = make_pair( 0, 0 );
   size_t n = branches->GetEntries();
   for( size_t i = 0; i < n; ++ i ) {
-    pair<size_t, size_t> size = GetTotalSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
+    size_type size = GetTotalSize( dynamic_cast<TBranch*>( branches->At( i ) ) );
     result.first += size.first;
     result.second += size.second;
   }
@@ -182,7 +189,7 @@ int main( int argc, char * argv[] ) {
     assert( b != 0 );
     string name( b->GetName() );
     if ( name == "EventAux" ) continue;
-    pair<size_t, size_t> s = GetTotalSize( b );
+    size_type s = GetTotalSize( b );
     v.push_back( make_pair( b->GetName(), s ) );
   }
   sort( v.begin(), v.end(), sortByCompressedSize<pair<string, pair<size_t,size_t> > >() );
@@ -197,7 +204,7 @@ int main( int argc, char * argv[] ) {
   TAxis * uxAxis = uncompressed.GetXaxis();
   for( BranchVector::const_iterator b = v.begin(); b != v.end(); ++ b ) {
     string name = b->first.c_str();
-    pair<size_t, size_t> s = b->second;
+    size_type s = b->second;
     cout << s.second << "/" << s.first << " bytes (" 
 	 << double( s.first ) / double( s.second ) << ") : "
 	 << b->first << endl;
@@ -209,12 +216,25 @@ int main( int argc, char * argv[] ) {
       x++;
     }
   }
-  pair<size_t, size_t> branchSize = GetTotalBranchSize( events );
+  size_type branchSize = GetTotalBranchSize( events );
   cout << "total branches size: " << branchSize.first << " bytes (uncompressed), " 
        << branchSize.second << " bytes (compressed)"<< endl;
-  pair<size_t, size_t> totalSize = GetTotalSize( events );
+  size_type totalSize = GetTotalSize( events );
   cout << "total tree size: " << totalSize.first << " bytes (uncompressed), " 
        << totalSize.second << " bytes (compressed)"<< endl;
+  double mn = DBL_MAX;
+  for( int i = 1; i <= top; ++i ) {
+    double cm = compressed.GetMinimum( i ), um = uncompressed.GetMinimum( i );
+    if ( cm > 0 && cm < mn ) mn = cm;
+    if ( um > 0 && um < mn ) mn = um;
+  }
+  mn *= 0.8;
+  double mx = max( compressed.GetMaximum(), uncompressed.GetMaximum() );
+  mx *= 1.2;
+  uncompressed.SetMinimum( mn );
+  uncompressed.SetMaximum( mx );
+  compressed.SetMinimum( mn );
+  compressed.SetMaximum( mx );
   cxAxis->SetLabelOffset( -0.3 );
   cxAxis->LabelsOption( "d" );
   cxAxis->SetLabelSize( 0.035 );
