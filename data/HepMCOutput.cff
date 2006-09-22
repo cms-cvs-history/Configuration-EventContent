@@ -1,6 +1,7 @@
 block HepMCOutput = {
   untracked vstring outputCommands = {
-    "keep edmHepMCProduct_source_*_*",
+# store only vertex smeared event
+#    "keep edmHepMCProduct_source_*_*",
     "keep edmHepMCProduct_VtxSmeared_*_*"
   }
 }
