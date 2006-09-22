@@ -39,18 +39,6 @@ static const char * const kSavePlotCommandOpt ="save-plot,s";
 static const char * const kPlotTopOpt ="plot-top";
 static const char * const kPlotTopCommandOpt ="plot-top,t";
 
-template<typename T>
-struct sortByCompressedSize {
-  bool operator()( const T & t1, const T & t2 ) const {
-    size_t s1 = t1.second.second, s2 = t2.second.second;
-    if ( s1 == 0 && s2 == 0 ) {
-      s1 = t1.second.first;
-      s2 = t2.second.first;
-    }
-    return s1 > s2;
-  }
-};
-
 typedef pair<size_t, size_t> size_type;
 
 size_type GetTotalSize( TBranch * );
@@ -85,7 +73,7 @@ size_type GetBasketSize( TBranch * b ) {
 size_type GetTotalSize( TBranch * br ) {
   TBuffer buf( TBuffer::kWrite, 10000 );
   TBranch::Class()->WriteBuffer( buf, br );
-  pair<size_t,size_t> size = GetBasketSize( br );
+  size_type size = GetBasketSize( br );
   size.first += buf.Length();
   return size;
 }
@@ -101,13 +89,24 @@ size_type GetTotalSize( TObjArray * branches ) {
   return result;
 }
 
-pair<size_t, size_t > GetTotalSize( TTree *t ) {
+size_type GetTotalSize( TTree *t ) {
   return make_pair( t->GetTotBytes(), t->GetZipBytes() );
 } 
 
-pair<size_t, size_t > GetTotalBranchSize( TTree *t ) {
+size_type GetTotalBranchSize( TTree *t ) {
   return GetTotalSize( t->GetListOfBranches() );
 } 
+
+template<typename T>
+struct sortByCompressedSize {
+  bool operator()( const T & t1, const T & t2 ) const {
+    size_t s1 = t1.second.second, s2 = t2.second.second;
+    if ( s1 == 0 && s2 == 0 ) {
+      s1 = t1.second.first; s2 = t2.second.first;
+    }
+    return s1 > s2;
+  }
+};
 
 int main( int argc, char * argv[] ) {
   using namespace boost::program_options;
@@ -169,18 +168,21 @@ int main( int argc, char * argv[] ) {
     cerr << programName << ": no object \"Events\" found in file: " << fileName << endl;
     return 7003;
   }
+
   TTree * events = dynamic_cast<TTree*>( o );
   if ( events == 0 ) {
     cerr << programName << ": object \"Events\" is not a TTree in file: " << fileName << endl;
     return 7004;
   }
+
   TObjArray * branches = events->GetListOfBranches();
   if ( branches == 0 ) {
     cerr << programName << ": tree \"Events\" in file " << fileName 
 	 << " contains no branches" << endl;
     return 7004;
   }
-  typedef vector<pair<string, pair< size_t, size_t > > > BranchVector;
+
+  typedef vector<pair<string, size_type> > BranchVector;
   BranchVector v;
   const size_t n =  branches->GetEntries();
   cout << fileName << " has " << n << " branches" << endl;
@@ -192,7 +194,7 @@ int main( int argc, char * argv[] ) {
     size_type s = GetTotalSize( b );
     v.push_back( make_pair( b->GetName(), s ) );
   }
-  sort( v.begin(), v.end(), sortByCompressedSize<pair<string, pair<size_t,size_t> > >() );
+  sort( v.begin(), v.end(), sortByCompressedSize<pair<string, size_type> >() );
   bool plot = ( vm.count( kPlotOpt ) > 0 );
   bool save = ( vm.count( kSavePlotOpt ) > 0 );
   int top = n;
@@ -205,9 +207,10 @@ int main( int argc, char * argv[] ) {
   for( BranchVector::const_iterator b = v.begin(); b != v.end(); ++ b ) {
     string name = b->first.c_str();
     size_type s = b->second;
-    cout << s.second << "/" << s.first << " bytes (" 
-	 << double( s.first ) / double( s.second ) << ") : "
-	 << b->first << endl;
+    double cx = s.second == 0 ? 0 : double( s.first ) / double( s.second );
+    cout << s.second << "/" << s.first << " bytes ";
+    if ( cx != 0 ) cout << "(" << cx << ") ";
+    cout << b->first << endl;
     if ( x < top ) {
       cxAxis->SetBinLabel( x + 1, name.c_str() );
       uxAxis->SetBinLabel( x + 1, name.c_str() );
