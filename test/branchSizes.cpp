@@ -52,7 +52,7 @@ typedef vector<BranchRecord> BranchVector;
 ostream & operator << ( ostream & out, const size_type & s ) {
   out << s.first << '/' << s.second << " bytes";
   if ( s.second != 0 ) 
-    out << " ( compr: " << double( s.first ) / double ( s.second ) << ")";
+    out << " (compr: " << double( s.first ) / double ( s.second ) << ")";
   return out;
 }
 
