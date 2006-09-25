@@ -1,0 +1,13 @@
+block FEVTOutput = {
+  untracked vstring outputCommands = {
+    "keep *",
+    "drop recoMETs_*_*_PROD",
+    "drop *_rawRoadSearchClouds_*_*",
+    "drop *_roadSearchSeed_*_*",
+    "drop *_cleanRoadSearchClouds_*_*",
+    "drop *_globalMixedSeeds_*_*",
+    "drop *_globalPixelSeeds_*_*",
+    "drop *_roadSearchSeeds_*_*",
+    "drop *_ecalUnsuppressedDigis_*_*"
+  }
+} 
