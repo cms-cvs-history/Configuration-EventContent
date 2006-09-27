@@ -7,6 +7,13 @@ block RECOTracksOutput = {
     "keep *_rsWithMaterialTracks_*_*",
     "keep *_GsfElectrons_*_*",
     "keep *_egammaCTFFinaleFitWithMaterial_*_*",
-    "keep *_pixelTracks_*_*"
+    "keep *_pixelTracks_*_*",
+
+#track candidates for electrons
+    "keep TrackCandidates_CkfElectronCandidates_*_*",
+    "keep TrackCandidates_ckfTrackCandidates_*_*",
+    "keep TrackCandidates_pixelMatchElectrons_*_*",
+    "keep TrackCandidates_rsTrackCandidates_*_*",
+    "keep TrackCandidates_siStripElectrons_*_*" 
   }
 }
