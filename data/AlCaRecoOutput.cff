@@ -1,0 +1,27 @@
+
+# Tracker Alignment
+
+# AlCaReco for track based alignment using ZMuMu events
+  include "Alignment/CSA06AlignmentAlgorithm/data/AlCaReco_CSA06_ZMuMu_Output.cff"
+
+# AlCaReco for track based alignment using MinBias events
+  include "Alignment/CSA06AlignmentAlgorithm/data/AlCaReco_CSA06_MinBias_Output.cff"
+
+# ECAL Calibration
+
+# ECAL calibration with phi symmetry 
+  include "Calibration/EcalAlCaRecoProducers/data/alcastreamEcalPhiSymOutput.cff"
+
+# ECAL calibration with isol. electrons
+  include "Calibration/EcalAlCaRecoProducers/data/alcastreamElectronOutput.cff"
+
+# HCAL Calibration
+
+# HCAL calibration with dijets
+  include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalDijetsOutput.cff"
+
+# HCAL calibration with isolated tracks
+  include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalIsotrkOutput.cff"
+
+# HCAl calibration with min.bias
+  include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalMinbiasOutput.cff"
