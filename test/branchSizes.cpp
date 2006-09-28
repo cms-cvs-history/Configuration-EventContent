@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.12 $
+ * \version $Revision: 1.13 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -274,13 +274,13 @@ int main( int argc, char * argv[] ) {
   uncompressed.SetMinimum( mn );
   uncompressed.SetMaximum( mx );
   compressed.SetMinimum( mn );
-  compressed.SetMaximum( mx );
-  cxAxis->SetLabelOffset( -0.3 );
-  cxAxis->LabelsOption( "d" );
-  cxAxis->SetLabelSize( 0.035 );
-  uxAxis->SetLabelOffset( -0.3 );
-  uxAxis->LabelsOption( "d" );
-  uxAxis->SetLabelSize( 0.035 );
+  //  compressed.SetMaximum( mx );
+  cxAxis->SetLabelOffset( -0.32 );
+  cxAxis->LabelsOption( "v" );
+  cxAxis->SetLabelSize( 0.03 );
+  uxAxis->SetLabelOffset( -0.32 );
+  uxAxis->LabelsOption( "v" );
+  uxAxis->SetLabelSize( 0.03 );
   compressed.GetYaxis()->SetTitle( "Bytes" );
   compressed.SetFillColor( kBlue );
   compressed.SetLineWidth( 2 );
