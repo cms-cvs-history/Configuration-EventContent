@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.7 $
+ * \version $Revision: 1.12 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -82,6 +82,8 @@ size_type GetBasketSize( TBranch * b, bool verbose ) {
   if ( b != 0 ) {
     if ( b->GetZipBytes() > 0 ) {
       result = make_pair( b->GetTotBytes(), b->GetZipBytes() );
+    } else {
+      result = make_pair( b->GetTotalSize(), b->GetTotalSize() );
     }
     if ( verbose )
       cout << " branch: " << b->GetName() << ", size:" << result.first << "/" << result.second << endl;
@@ -94,7 +96,8 @@ size_type GetTotalSize( TBranch * br, bool verbose ) {
   TBuffer buf( TBuffer::kWrite, 10000 );
   TBranch::Class()->WriteBuffer( buf, br );
   size_type size = GetBasketSize( br, verbose );
-  size.first += buf.Length();
+  if ( br->GetZipBytes() > 0 )
+    size.first += buf.Length();
   if ( verbose )
     cout << ">>> total branch size: " << br->GetName() << ":" << size.first << "/" << size.second << endl;  
   return size;
