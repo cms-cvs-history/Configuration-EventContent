@@ -4,6 +4,6 @@ block G4TracksVerticesOutput = {
     "keep SimVertexs_g4SimHits_*_*",
 #keep also old names for 0_8_x compatibility
     "keep SimTracks_SimG4Object_*_*",
-    "keep SimTracks_SimG4Object_*_*"
+    "keep SimVertexs_SimG4Object_*_*"
   }
 }
