@@ -2,7 +2,7 @@
  *
  * \author Luca Lista, INFN
  *
- * \version $Revision: 1.13 $
+ * \version $Revision: 1.14 $
  *
  */
 #include <boost/shared_ptr.hpp>
@@ -238,8 +238,8 @@ int main( int argc, char * argv[] ) {
   bool save = ( vm.count( kSavePlotOpt ) > 0 );
   int top = n;
   if( vm.count( kPlotTopOpt ) > 0 ) top = vm[ kPlotTopOpt ].as<int>();
-  TH1F uncompressed( "uncompressed", "branch sizes (uncompressed)", top, -0.5, - 0.5 + top );
-  TH1F compressed( "compressed", "branch sizes (compressed)", top, -0.5, - 0.5 + top );
+  TH1F uncompressed( "uncompressed", "branch sizes", top, -0.5, - 0.5 + top );
+  TH1F compressed( "compressed", "branch sizes", top, -0.5, - 0.5 + top );
   int x = 0;
   TAxis * cxAxis = compressed.GetXaxis();
   TAxis * uxAxis = uncompressed.GetXaxis();
