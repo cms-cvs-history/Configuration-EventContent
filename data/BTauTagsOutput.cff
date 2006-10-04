@@ -1,5 +1,8 @@
 block BTauTagsOutput = {
   untracked vstring outputCommands = {
+#jet/track associations
+    "keep *_associator_*_*",
+
 #b/tau tagging
     "keep *_coneIsolation_*_*",
     "keep *_trackCounting_*_*"
