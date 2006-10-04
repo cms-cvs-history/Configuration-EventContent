@@ -25,6 +25,3 @@
 
 # HCAl calibration with min.bias
   include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalMinbiasOutput.cff"
-
-# Muon Alignment
-# include "Alignment/MuonAlignment/data/AlCaReco_CSA06_ZMuMu_Output_muon.cff"
