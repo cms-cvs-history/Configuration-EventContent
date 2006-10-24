@@ -6,7 +6,7 @@ block AODTracksOutput = {
     "keep recoTracks_rsAnalyticalTracks_*_*",
     "keep recoTracks_rsWithMaterialTracks_*_*",
     "keep recoTracks_GsfElectrons_*_*",
-    "keep recoTracks_egammaCTFFinaleFitWithMaterial_*_*",
+    "keep recoTracks_egammaCTFFinalFitWithMaterial_*_*",
     "keep recoTracks_pixelTracks_*_*"
   }
 }
