@@ -2,10 +2,10 @@
 # Tracker Alignment
 
 # AlCaReco for track based alignment using ZMuMu events
-  include "Alignment/CSA06AlignmentAlgorithm/data/AlCaReco_CSA06_ZMuMu_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/AlCaReco_CSA06_ZMuMu_Output.cff"
 
 # AlCaReco for track based alignment using MinBias events
-  include "Alignment/CSA06AlignmentAlgorithm/data/AlCaReco_CSA06_MinBias_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/AlCaReco_CSA06_MinBias_Output.cff"
 
 # ECAL Calibration
 
