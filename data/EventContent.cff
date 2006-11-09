@@ -38,7 +38,8 @@ replace FEVTEventContent.outputCommands += RecoLocalTrackerFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoLocalMuonFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoLocalCaloFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoEcalFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoTrackerTrackingToolsFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoTrackerFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoTrackerFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoJetsFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoMETFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoMuonFEVT.outputCommands
@@ -49,11 +50,13 @@ replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
 #
+
 replace RECOEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoLocalMuonRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoLocalCaloRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoEcalRECO.outputCommands
-replace RECOEventContent.outputCommands += RecoTrackerTrackingToolsRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoTrackerRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoTrackerRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoJetsRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoMETRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoMuonRECO.outputCommands
@@ -64,11 +67,13 @@ replace RECOEventContent.outputCommands += RecoVertexRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
 #
+
 replace AODEventContent.outputCommands += RecoLocalTrackerAOD.outputCommands
 replace AODEventContent.outputCommands += RecoLocalMuonAOD.outputCommands
 replace AODEventContent.outputCommands += RecoLocalCaloAOD.outputCommands
 replace AODEventContent.outputCommands += RecoEcalAOD.outputCommands
-replace AODEventContent.outputCommands += RecoTrackerTrackingToolsAOD.outputCommands
+replace AODEventContent.outputCommands += RecoTrackerAOD.outputCommands
+replace AODEventContent.outputCommands += RecoTrackerAOD.outputCommands
 replace AODEventContent.outputCommands += RecoJetsAOD.outputCommands
 replace AODEventContent.outputCommands += RecoMETAOD.outputCommands
 replace AODEventContent.outputCommands += RecoMuonAOD.outputCommands
@@ -78,5 +83,4 @@ replace AODEventContent.outputCommands += RecoTauTagAOD.outputCommands
 replace AODEventContent.outputCommands += RecoVertexAOD.outputCommands
 replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
 replace AODEventContent.outputCommands += RecoPixelVertexingAOD.outputCommands
-
 #
