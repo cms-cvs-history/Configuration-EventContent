@@ -1,0 +1,86 @@
+include "RecoLocalTracker/Configuration/data/RecoLocalTracker_EventContent.cff"
+include "RecoLocalMuon/Configuration/data/RecoLocalMuon_EventContent.cff"
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo_EventContent.cff"
+include "RecoEcal/Configuration/data/RecoEcal_EventContent.cff"
+include "TrackingTools/Configuration/data/TrackingTools_EventContent.cff"
+include "RecoTracker/Configuration/data/RecoTracker_EventContent.cff"
+include "RecoJets/Configuration/data/RecoJets_EventContent.cff"
+include "RecoMET/Configuration/data/RecoMET_EventContent.cff"
+include "RecoMuon/Configuration/data/RecoMuon_EventContent.cff"
+include "RecoBTau/Configuration/data/RecoBTau_EventContent.cff"
+include "RecoBTag/Configuration/data/RecoBTag_EventContent.cff"
+include "RecoTauTag/Configuration/data/RecoTauTag_EventContent.cff"
+include "RecoVertex/Configuration/data/RecoVertex_EventContent.cff"
+include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing_EventContent.cff"
+include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
+
+#
+
+block FEVTEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+#
+block RECOEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+#
+block AODEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+#
+replace FEVTEventContent.outputCommands += RecoLocalTrackerFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoLocalMuonFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoLocalCaloFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoEcalFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoTrackerFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoTrackerFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoJetsFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoMETFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoMuonFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoBTauFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoBTagFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoTauTagFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
+#
+
+replace RECOEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoLocalMuonRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoLocalCaloRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoEcalRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoTrackerRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoTrackerRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoJetsRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoMETRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoMuonRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoBTauRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoBTagRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoTauTagRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoVertexRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
+#
+
+replace AODEventContent.outputCommands += RecoLocalTrackerAOD.outputCommands
+replace AODEventContent.outputCommands += RecoLocalMuonAOD.outputCommands
+replace AODEventContent.outputCommands += RecoLocalCaloAOD.outputCommands
+replace AODEventContent.outputCommands += RecoEcalAOD.outputCommands
+replace AODEventContent.outputCommands += RecoTrackerAOD.outputCommands
+replace AODEventContent.outputCommands += RecoTrackerAOD.outputCommands
+replace AODEventContent.outputCommands += RecoJetsAOD.outputCommands
+replace AODEventContent.outputCommands += RecoMETAOD.outputCommands
+replace AODEventContent.outputCommands += RecoMuonAOD.outputCommands
+replace AODEventContent.outputCommands += RecoBTauAOD.outputCommands
+replace AODEventContent.outputCommands += RecoBTagAOD.outputCommands
+replace AODEventContent.outputCommands += RecoTauTagAOD.outputCommands
+replace AODEventContent.outputCommands += RecoVertexAOD.outputCommands
+replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
+replace AODEventContent.outputCommands += RecoPixelVertexingAOD.outputCommands
+#
