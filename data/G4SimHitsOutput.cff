@@ -1,5 +1,0 @@
-block G4SimHitsOutput = {
-  untracked vstring outputCommands = {
-    "keep *_g4SimHits_*_*"
-  }
-}
