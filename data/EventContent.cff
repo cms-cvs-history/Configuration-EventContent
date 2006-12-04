@@ -138,7 +138,7 @@ replace AODSIMEventContent.outputCommands += AODEventContent.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommand
+replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 
 
