@@ -131,20 +131,26 @@ replace AODSIMEventContent.outputCommands += AODEventContent.outputCommands
 
 # SIM STUFF - this has to be at the END, otherwise drop* wins
 
+#
+# save here also GenJets
+#
+
 replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommand
+replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 
 
 replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 
 replace AODSIMEventContent.outputCommands += SimG4CoreAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
-
+replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
 #
