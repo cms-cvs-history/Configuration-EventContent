@@ -13,6 +13,7 @@ include "RecoTauTag/Configuration/data/RecoTauTag_EventContent.cff"
 include "RecoVertex/Configuration/data/RecoVertex_EventContent.cff"
 include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing_EventContent.cff"
 include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
+include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 #
 
 #Simulation Stuff
@@ -82,6 +83,7 @@ replace FEVTEventContent.outputCommands += RecoTauTagFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
+replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
 #
 
 replace RECOEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
@@ -99,6 +101,7 @@ replace RECOEventContent.outputCommands += RecoTauTagRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoVertexRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
+replace RECOEventContent.outputCommands += HLTriggerRECO.outputCommands 
 #
 
 replace AODEventContent.outputCommands += RecoLocalTrackerAOD.outputCommands
@@ -116,6 +119,7 @@ replace AODEventContent.outputCommands += RecoTauTagAOD.outputCommands
 replace AODEventContent.outputCommands += RecoVertexAOD.outputCommands
 replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
 replace AODEventContent.outputCommands += RecoPixelVertexingAOD.outputCommands
+replace AODEventContent.outputCommands += HLTriggerAOD.outputCommands
 #
 
 
