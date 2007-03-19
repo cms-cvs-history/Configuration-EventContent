@@ -22,6 +22,7 @@ include "SimG4Core/Configuration/data/SimG4Core_EventContent.cff"
 include "SimTracker/Configuration/data/SimTracker_EventContent.cff"
 include "SimMuon/Configuration/data/SimMuon_EventContent.cff"
 include "SimCalorimetry/Configuration/data/SimCalorimetry_EventContent.cff"
+include "SimGeneral/Configuration/data/SimGeneral_EventContent.cff"
 
 #
 
@@ -144,6 +145,7 @@ replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 
 
 replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
@@ -151,10 +153,12 @@ replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
 replace AODSIMEventContent.outputCommands += SimG4CoreAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
 #
