@@ -153,12 +153,12 @@ replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
 replace AODSIMEventContent.outputCommands += SimG4CoreAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
+replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
 #
