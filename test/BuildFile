@@ -1,5 +1,0 @@
-<bin name="branchSizes" file="branchSizes.cpp">
-  <use name=FWCore/FWLite>
-  <use name=root>
-  <use name=boost_program_options>
-</bin>
