@@ -2,29 +2,39 @@
 # Tracker Alignment
 
 # AlCaReco for track based alignment using ZMuMu events
-  include "Alignment/CommonAlignmentProducer/data/AlCaReco_CSA06_ZMuMu_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlZMuMu_output.cff"
 
 # AlCaReco for track based alignment using MinBias events
-  include "Alignment/CommonAlignmentProducer/data/AlCaReco_CSA06_MinBias_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMinBias_Output.cff"
 
 # ECAL Calibration
 
 # ECAL calibration with phi symmetry 
-  include "Calibration/EcalAlCaRecoProducers/data/alcastreamEcalPhiSymOutput.cff"
+  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPhiSym_Output.cff"
 
 # ECAL calibration with isol. electrons
-  include "Calibration/EcalAlCaRecoProducers/data/alcastreamElectronOutput.cff"
+  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalElectron_Output.cff"
+
+# ECAL calibration with pi0 
+  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0_Output.cff"
+
+# ECAL calibration with pi0 Basic Clusters
+  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0BC_Output.cff"
+
 
 # HCAL Calibration
 
 # HCAL calibration with dijets
-  include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalDijetsOutput.cff"
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalDijets_Output.cff"
+
+# HCAL calibration with gamma + jet
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalGammaJet_Output.cff"
 
 # HCAL calibration with isolated tracks
-  include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalIsotrkOutput.cff"
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalIsoTrk_Output.cff"
 
 # HCAl calibration with min.bias
-  include "Calibration/HcalAlCaRecoProducers/data/alcastreamHcalMinbiasOutput.cff"
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalMinBias_Output.cff"
 
 # Muon Alignment
-  include "Alignment/MuonAlignment/data/AlCaReco_CSA06_ZMuMu_Output_muon.cff"
+  include "Alignment/MuonAlignment/data/ALCARECOMuAlZMuMu_Output.cff"
