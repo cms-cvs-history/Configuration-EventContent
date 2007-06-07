@@ -2,7 +2,7 @@
 # Tracker Alignment
 
 # AlCaReco for track based alignment using ZMuMu events
-  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlZMuMu_output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlZMuMu_Output.cff"
 
 # AlCaReco for track based alignment using MinBias events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMinBias_Output.cff"
@@ -37,4 +37,4 @@
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalMinBias_Output.cff"
 
 # Muon Alignment
-  include "Alignment/MuonAlignment/data/ALCARECOMuAlZMuMu_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlZMuMu_Output.cff"
