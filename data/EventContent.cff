@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id$
+#  $Id: EventContent.cff,v 1.11 2007/06/16 09:16:56 llista Exp $
 #
 #####################################################################
 
@@ -65,11 +65,9 @@ include "SimGeneral/Configuration/data/SimGeneral_EventContent.cff"
 include "ElectroWeakAnalysis/Configuration/data/ElectroWeakAnalysis_EventContent.cff"
 
 
-
 #####################################################################
 #
-# FEVT, RECO, AOD Data Tiers definition
-#    include reconstruction content
+# FEVT Data Tier definition
 #
 #####################################################################
 
@@ -78,24 +76,6 @@ block FEVTEventContent = {
      "drop *"
   }
 }
-
-block RECOEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-block AODEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-#####################################################################
-#
-# FEVT Data Tier definition
-#
-#####################################################################
 
 replace FEVTEventContent.outputCommands += RecoLocalTrackerFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoLocalMuonFEVT.outputCommands
@@ -116,11 +96,18 @@ replace FEVTEventContent.outputCommands += RecoParticleFlowFEVT.outputCommands
 replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
 replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
 
+
 #####################################################################
 #
 # RECO Data Tier definition
 #
 #####################################################################
+
+block RECOEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
 
 replace RECOEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoLocalMuonRECO.outputCommands
@@ -141,11 +128,18 @@ replace RECOEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
 replace RECOEventContent.outputCommands += L1TriggerRECO.outputCommands 
 replace RECOEventContent.outputCommands += HLTriggerRECO.outputCommands 
 
+
 #####################################################################
 #
 # AOD Data Tier definition
 #
 #####################################################################
+
+block AODEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
 
 replace AODEventContent.outputCommands += RecoLocalTrackerAOD.outputCommands
 replace AODEventContent.outputCommands += RecoLocalMuonAOD.outputCommands
@@ -167,11 +161,9 @@ replace AODEventContent.outputCommands += L1TriggerAOD.outputCommands
 replace AODEventContent.outputCommands += HLTriggerAOD.outputCommands
 
 
-
 #####################################################################
 #
-# FEVTSIM, RECOSIM, AODSIM Data Tiers definition
-#    include reconstruction and simulation
+# FEVTSIM Data Tier definition
 #
 #####################################################################
 
@@ -181,28 +173,7 @@ block FEVTSIMEventContent = {
   }
 }
 
-block RECOSIMEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-block AODSIMEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
 replace FEVTSIMEventContent.outputCommands += FEVTEventContent.outputCommands
-replace RECOSIMEventContent.outputCommands += RECOEventContent.outputCommands
-replace AODSIMEventContent.outputCommands  += AODEventContent.outputCommands
-
-#####################################################################
-#
-# FEVTSIM Data Tier definition
-#
-#####################################################################
-
 replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
@@ -210,12 +181,20 @@ replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 
+
 #####################################################################
 #
 # RECOSIM Data Tier definition
 #
 #####################################################################
 
+block RECOSIMEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace RECOSIMEventContent.outputCommands += RECOEventContent.outputCommands
 replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
@@ -223,12 +202,20 @@ replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
+
 #####################################################################
 #
 # AODSIM Data Tier definition
 #
 #####################################################################
 
+block AODSIMEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace AODSIMEventContent.outputCommands  += AODEventContent.outputCommands
 replace AODSIMEventContent.outputCommands += SimG4CoreAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
@@ -237,11 +224,9 @@ replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
 
 
-
 #####################################################################
 #
-# FEVTSIMANA, RECOSIMANA, AODSIMANA Data Tiers definition
-#    include reconstruction, simulation and analysis
+# FEVTSIMANA Data Tier definition
 #
 #####################################################################
 
@@ -251,29 +236,9 @@ block FEVTSIMANAEventContent = {
   }
 }
 
-block RECOSIMANAEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-block AODSIMANAEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
 replace FEVTSIMANAEventContent.outputCommands += FEVTSIMEventContent.outputCommands
-replace RECOSIMANAEventContent.outputCommands += RECOSIMEventContent.outputCommands
-replace AODSIMANAEventContent.outputCommands  += AODSIMEventContent.outputCommands
-
-#####################################################################
-#
-# FEVTSIMANA Data Tier definition
-#
-#####################################################################
-
 replace FEVTSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
+
 
 #####################################################################
 #
@@ -281,7 +246,15 @@ replace FEVTSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent
 #
 #####################################################################
 
+block RECOSIMANAEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace RECOSIMANAEventContent.outputCommands += RECOSIMEventContent.outputCommands
 replace RECOSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
+
 
 #####################################################################
 #
@@ -289,4 +262,11 @@ replace RECOSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent
 #
 #####################################################################
 
+block AODSIMANAEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace AODSIMANAEventContent.outputCommands  += AODSIMEventContent.outputCommands
 replace AODSIMANAEventContent.outputCommands  += ElectroWeakAnalysisEventContent.outputCommands
