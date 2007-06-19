@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.11 2007/06/16 09:16:56 llista Exp $
+#  $Id: EventContent.cff,v 1.12 2007/06/16 15:25:45 llista Exp $
 #
 #####################################################################
 
@@ -63,6 +63,8 @@ include "SimGeneral/Configuration/data/SimGeneral_EventContent.cff"
 #####################################################################
 
 include "ElectroWeakAnalysis/Configuration/data/ElectroWeakAnalysis_EventContent.cff"
+include "HiggsAnalysis/Configuration/data/HiggsAnalysis_EventContent.cff"
+include "TopQuarkAnalysis/Configuration/data/TopQuarkAnalysis_EventContent.cff"
 
 
 #####################################################################
@@ -238,6 +240,8 @@ block FEVTSIMANAEventContent = {
 
 replace FEVTSIMANAEventContent.outputCommands += FEVTSIMEventContent.outputCommands
 replace FEVTSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
+replace FEVTSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
+replace FEVTSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
 
 
 #####################################################################
@@ -254,6 +258,8 @@ block RECOSIMANAEventContent = {
 
 replace RECOSIMANAEventContent.outputCommands += RECOSIMEventContent.outputCommands
 replace RECOSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
+replace RECOSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
+replace RECOSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
 
 
 #####################################################################
@@ -268,5 +274,7 @@ block AODSIMANAEventContent = {
   }
 }
 
-replace AODSIMANAEventContent.outputCommands  += AODSIMEventContent.outputCommands
-replace AODSIMANAEventContent.outputCommands  += ElectroWeakAnalysisEventContent.outputCommands
+replace AODSIMANAEventContent.outputCommands += AODSIMEventContent.outputCommands
+replace AODSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
+replace AODSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
+replace AODSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
