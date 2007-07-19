@@ -1,3 +1,4 @@
+# last update: $Date$ by $Author$
 
 # Tracker Alignment
 
@@ -6,6 +7,9 @@
 
 # AlCaReco for track based alignment using MinBias events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMinBias_Output.cff"
+
+# AlCaReco for track based alignment using Cosmic muon events
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmics_Output.cff"
 
 # ECAL Calibration
 
