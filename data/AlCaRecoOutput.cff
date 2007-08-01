@@ -1,4 +1,4 @@
-# last update: $Date$ by $Author$
+# last update: $Date: 2007/07/19 13:50:57 $ by $Author: fpschill $
 
 # Tracker Alignment
 
@@ -39,6 +39,9 @@
 
 # HCAl calibration with min.bias
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalMinBias_Output.cff"
+
+# HCAl calibration with Zmuu (HO)
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalZMuMu_Output.cff"
 
 # Muon Alignment
   include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlZMuMu_Output.cff"
