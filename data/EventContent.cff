@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.12 2007/06/16 15:25:45 llista Exp $
+#  $Id: EventContent.cff,v 1.13 2007/06/19 13:09:31 llista Exp $
 #
 #####################################################################
 
@@ -181,6 +181,7 @@ replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 
 
@@ -202,6 +203,7 @@ replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
 
@@ -223,6 +225,7 @@ replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
+replace AODSIMEventContent.outputCommands += RecoGenMETAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
 
 
