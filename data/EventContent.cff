@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.16 2007/09/20 08:21:08 tboccali Exp $
+#  $Id: EventContent.cff,v 1.18 2007/09/20 17:00:32 tboccali Exp $
 #
 #####################################################################
 
@@ -185,6 +185,7 @@ replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 
 
 #####################################################################
@@ -204,6 +205,7 @@ replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
