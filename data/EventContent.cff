@@ -43,7 +43,7 @@ include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
 include "RecoParticleFlow/Configuration/data/RecoParticleFlow_EventContent.cff"
 include "L1Trigger/Configuration/data/L1Trigger_EventContent.cff"
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
-include "RecoVertex/BeamSpotProducer/data/BeamSpot_EventContent.cff"
+
 #####################################################################
 #
 # Simulation Systems
@@ -95,7 +95,6 @@ replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
 replace FEVTEventContent.outputCommands += RecoParticleFlowFEVT.outputCommands
-replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
 replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
 replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
 
@@ -128,7 +127,6 @@ replace RECOEventContent.outputCommands += RecoVertexRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
 replace RECOEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
-replace RECOEventContent.outputCommands += BeamSpotRECO.outputCommands
 replace RECOEventContent.outputCommands += L1TriggerRECO.outputCommands 
 replace RECOEventContent.outputCommands += HLTriggerRECO.outputCommands 
 
@@ -161,7 +159,6 @@ replace AODEventContent.outputCommands += RecoVertexAOD.outputCommands
 replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
 replace AODEventContent.outputCommands += RecoPixelVertexingAOD.outputCommands
 replace AODEventContent.outputCommands += RecoParticleFlowAOD.outputCommands
-replace AODEventContent.outputCommands += BeamSpotAOD.outputCommands
 replace AODEventContent.outputCommands += L1TriggerAOD.outputCommands
 replace AODEventContent.outputCommands += HLTriggerAOD.outputCommands
 
@@ -183,6 +180,7 @@ replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 
@@ -204,6 +202,7 @@ replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
