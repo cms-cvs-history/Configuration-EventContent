@@ -1,4 +1,4 @@
-# last update: $Date: 2007/07/19 13:50:57 $ by $Author: fpschill $
+# last update: $Date: 2007/08/01 19:48:37 $ by $Author: malgeri $
 
 # Tracker Alignment
 
@@ -45,3 +45,6 @@
 
 # Muon Alignment
   include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlZMuMu_Output.cff"
+
+# RPC calibration
+  include "CalibMuon/RPCCalibration/data/ALCARECORpcCalHLT_Output.cff"
