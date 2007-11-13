@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.18 2007/09/20 17:00:32 tboccali Exp $
+#  $Id: EventContent.cff,v 1.19 2007/09/20 17:05:54 tboccali Exp $
 #
 #####################################################################
 
@@ -50,6 +50,7 @@ include "RecoVertex/BeamSpotProducer/data/BeamSpot_EventContent.cff"
 #
 #####################################################################
 
+include "GeneratorInterface/Configuration/data/GeneratorInterface_EventContent.cff"
 include "SimG4Core/Configuration/data/SimG4Core_EventContent.cff"
 include "SimTracker/Configuration/data/SimTracker_EventContent.cff"
 include "SimMuon/Configuration/data/SimMuon_EventContent.cff"
@@ -179,6 +180,7 @@ block FEVTSIMEventContent = {
 }
 
 replace FEVTSIMEventContent.outputCommands += FEVTEventContent.outputCommands
+replace FEVTSIMEventContent.outputCommands += GeneratorInterfaceFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
@@ -201,6 +203,7 @@ block RECOSIMEventContent = {
 }
 
 replace RECOSIMEventContent.outputCommands += RECOEventContent.outputCommands
+replace RECOSIMEventContent.outputCommands += GeneratorInterfaceRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
@@ -222,7 +225,8 @@ block AODSIMEventContent = {
   }
 }
 
-replace AODSIMEventContent.outputCommands  += AODEventContent.outputCommands
+replace AODSIMEventContent.outputCommands += AODEventContent.outputCommands
+replace AODSIMEventContent.outputCommands += GeneratorInterfaceAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimG4CoreAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
