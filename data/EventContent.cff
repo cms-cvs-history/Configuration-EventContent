@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.19 2007/09/20 17:05:54 tboccali Exp $
+#  $Id: EventContent.cff,v 1.20 2007/11/13 11:05:46 fabiocos Exp $
 #
 #####################################################################
 
@@ -160,7 +160,6 @@ replace AODEventContent.outputCommands += RecoBTagAOD.outputCommands
 replace AODEventContent.outputCommands += RecoTauTagAOD.outputCommands
 replace AODEventContent.outputCommands += RecoVertexAOD.outputCommands
 replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
-replace AODEventContent.outputCommands += RecoPixelVertexingAOD.outputCommands
 replace AODEventContent.outputCommands += RecoParticleFlowAOD.outputCommands
 replace AODEventContent.outputCommands += BeamSpotAOD.outputCommands
 replace AODEventContent.outputCommands += L1TriggerAOD.outputCommands
