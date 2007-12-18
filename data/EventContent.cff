@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.20 2007/11/13 11:05:46 fabiocos Exp $
+#  $Id: EventContent.cff,v 1.21 2007/11/28 13:32:12 elmer Exp $
 #
 #####################################################################
 
@@ -44,6 +44,10 @@ include "RecoParticleFlow/Configuration/data/RecoParticleFlow_EventContent.cff"
 include "L1Trigger/Configuration/data/L1Trigger_EventContent.cff"
 include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 include "RecoVertex/BeamSpotProducer/data/BeamSpot_EventContent.cff"
+
+##DigiToRaw content
+include "EventFilter/Configuration/data/DigiToRaw_EventContent.cff"
+
 #####################################################################
 #
 # Simulation Systems
@@ -99,6 +103,7 @@ replace FEVTEventContent.outputCommands += RecoParticleFlowFEVT.outputCommands
 replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
 replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
 replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
+replace FEVTEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 
 
 #####################################################################
@@ -132,7 +137,6 @@ replace RECOEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
 replace RECOEventContent.outputCommands += BeamSpotRECO.outputCommands
 replace RECOEventContent.outputCommands += L1TriggerRECO.outputCommands 
 replace RECOEventContent.outputCommands += HLTriggerRECO.outputCommands 
-
 
 #####################################################################
 #
@@ -187,6 +191,7 @@ replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 
 
 #####################################################################
@@ -211,7 +216,6 @@ replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 
-
 #####################################################################
 #
 # AODSIM Data Tier definition
@@ -233,7 +237,6 @@ replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenMETAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
-
 
 #####################################################################
 #
