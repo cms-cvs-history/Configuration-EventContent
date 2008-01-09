@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.21 2007/11/28 13:32:12 elmer Exp $
+#  $Id: EventContent.cff,v 1.22 2007/12/18 16:47:10 fambrogl Exp $
 #
 #####################################################################
 
@@ -103,7 +103,6 @@ replace FEVTEventContent.outputCommands += RecoParticleFlowFEVT.outputCommands
 replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
 replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
 replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
-replace FEVTEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 
 
 #####################################################################
@@ -193,6 +192,28 @@ replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 
+#####################################################################
+#
+# FEVTSIMDIGI Data Tier definition
+#
+#####################################################################
+
+block FEVTSIMDIGIEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace FEVTSIMDIGIEventContent.outputCommands += FEVTEventContent.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += GeneratorInterfaceFEVT.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += SimG4CoreFEVT.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += SimGeneralFEVT.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += SimTrackerFEVTDIGI.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += SimMuonFEVTDIGI.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += SimCalorimetryFEVTDIGI.outputCommands
+
 
 #####################################################################
 #
@@ -254,6 +275,23 @@ replace FEVTSIMANAEventContent.outputCommands += FEVTSIMEventContent.outputComma
 replace FEVTSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
 replace FEVTSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
 replace FEVTSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
+
+#####################################################################
+#
+# FEVTSIMDIGIANA Data Tier definition
+#
+#####################################################################
+
+block FEVTSIMDIGIANAEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace FEVTSIMDIGIANAEventContent.outputCommands += FEVTSIMDIGIEventContent.outputCommands
+replace FEVTSIMDIGIANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
+replace FEVTSIMDIGIANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
+replace FEVTSIMDIGIANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
 
 
 #####################################################################
