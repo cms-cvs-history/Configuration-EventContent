@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.22 2007/12/18 16:47:10 fambrogl Exp $
+#  $Id: EventContent.cff,v 1.23 2008/01/09 08:58:53 fambrogl Exp $
 #
 #####################################################################
 
@@ -213,6 +213,7 @@ replace FEVTSIMDIGIEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 replace FEVTSIMDIGIEventContent.outputCommands += SimTrackerFEVTDIGI.outputCommands
 replace FEVTSIMDIGIEventContent.outputCommands += SimMuonFEVTDIGI.outputCommands
 replace FEVTSIMDIGIEventContent.outputCommands += SimCalorimetryFEVTDIGI.outputCommands
+replace FEVTSIMDIGIEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 
 
 #####################################################################
