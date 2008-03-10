@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.24 2008/01/17 13:18:53 fambrogl Exp $
+#  $Id: EventContent.cff,v 1.25 2008/02/14 23:00:20 jbrooke Exp $
 #
 #####################################################################
 
@@ -71,8 +71,15 @@ include "ElectroWeakAnalysis/Configuration/data/ElectroWeakAnalysis_EventContent
 include "HiggsAnalysis/Configuration/data/HiggsAnalysis_EventContent.cff"
 include "TopQuarkAnalysis/Configuration/data/TopQuarkAnalysis_EventContent.cff"
 
-
 #####################################################################
+#
+# DQM
+#
+#####################################################################
+
+include "DQMOffline/Configuration/data/DQMOffline_EventContent.cff"
+
+
 #
 # FEVT Data Tier definition
 #
@@ -103,6 +110,7 @@ replace FEVTEventContent.outputCommands += RecoParticleFlowFEVT.outputCommands
 replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
 replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
 replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
+replace FEVTEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
 
 
 #####################################################################
@@ -136,6 +144,7 @@ replace RECOEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
 replace RECOEventContent.outputCommands += BeamSpotRECO.outputCommands
 replace RECOEventContent.outputCommands += L1TriggerRECO.outputCommands 
 replace RECOEventContent.outputCommands += HLTriggerRECO.outputCommands 
+replace RECOEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
 
 #####################################################################
 #
@@ -167,6 +176,7 @@ replace AODEventContent.outputCommands += RecoParticleFlowAOD.outputCommands
 replace AODEventContent.outputCommands += BeamSpotAOD.outputCommands
 replace AODEventContent.outputCommands += L1TriggerAOD.outputCommands
 replace AODEventContent.outputCommands += HLTriggerAOD.outputCommands
+replace AODEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands 
 
 
 #####################################################################
@@ -191,6 +201,7 @@ replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
+replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
 
 #####################################################################
 #
@@ -215,6 +226,7 @@ replace FEVTSIMDIGIEventContent.outputCommands += SimMuonFEVTDIGI.outputCommands
 replace FEVTSIMDIGIEventContent.outputCommands += SimCalorimetryFEVTDIGI.outputCommands
 replace FEVTSIMDIGIEventContent.outputCommands += L1TriggerFEVTDIGI.outputCommands 
 replace FEVTSIMDIGIEventContent.outputCommands += DigiToRawFEVT.outputCommands 
+replace FEVTSIMDIGIEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
 
 
 #####################################################################
@@ -238,6 +250,7 @@ replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
 
 #####################################################################
 #
@@ -260,6 +273,7 @@ replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
 replace AODSIMEventContent.outputCommands += RecoGenMETAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
+replace AODSIMEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands 
 
 #####################################################################
 #
