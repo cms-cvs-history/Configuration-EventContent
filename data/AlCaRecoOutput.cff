@@ -1,4 +1,4 @@
-# last update: $Date: 2007/08/01 19:48:37 $ by $Author: malgeri $
+# last update: $Date: 2007/09/28 12:50:24 $ by $Author: malgeri $
 
 # Tracker Alignment
 
@@ -19,12 +19,18 @@
 # ECAL calibration with isol. electrons
   include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalElectron_Output.cff"
 
+
+# The following paths are obsoleted since pi0 calibration
+# has a HLT path (argiro,20080314 )
+
 # ECAL calibration with pi0 
-  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0_Output.cff"
+#  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0_Output.cff"
 
 # ECAL calibration with pi0 Basic Clusters
-  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0BC_Output.cff"
+#  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0BC_Output.cff"
 
+# ECAL calibration with pi0 hlt path
+  include "Calibration/EcalAlCaRecoProducers/data/ALCARECOEcalCalPi0Calib_Output.cff"
 
 # HCAL Calibration
 
