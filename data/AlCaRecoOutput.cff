@@ -1,4 +1,4 @@
-# last update: $Date: 2007/09/28 12:50:24 $ by $Author: malgeri $
+# last update: $Date: 2008/03/14 08:09:43 $ by $Author: argiro $
 
 # Tracker Alignment
 
@@ -47,7 +47,8 @@
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalMinBias_Output.cff"
 
 # HCAl calibration with Zmuu (HO)
-  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalZMuMu_Output.cff"
+#  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalZMuMu_Output.cff"
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalHO_Output.cff"
 
 # Muon Alignment
   include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlZMuMu_Output.cff"
