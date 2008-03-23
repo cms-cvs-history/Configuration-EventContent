@@ -13,7 +13,7 @@
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
 #
-#  $Id: EventContent.cff,v 1.25 2008/02/14 23:00:20 jbrooke Exp $
+#  $Id: EventContent.cff,v 1.26 2008/03/10 23:46:45 dlange Exp $
 #
 #####################################################################
 
@@ -344,3 +344,13 @@ replace AODSIMANAEventContent.outputCommands += AODSIMEventContent.outputCommand
 replace AODSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
 replace AODSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
 replace AODSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
+
+
+###### RAW only data tier
+
+block RAWEventContent = {
+  untracked vstring outputCommands = {
+     "drop *",
+     "keep  FEDRawDataCollection_rawDataCollector_*_*"
+  }
+}
