@@ -1,18 +1,28 @@
-# last update: $Date: 2008/03/27 12:07:06 $ by $Author: futyand $
+# last update: $Date: 2008/03/27 21:12:14 $ by $Author: futyand $
 
 # Tracker Alignment
 
 # AlCaReco for track based alignment using ZMuMu events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlZMuMu_Output.cff"
 
-# AlCaReco for track based alignment using MinBias events
-  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMinBias_Output.cff"
-
 # AlCaReco for track based alignment using Cosmic muon events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmics_Output.cff"
 
+# AlCaReco for track based alignment using isoMu events
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMuonIsolated_Output.cff"
+
+# AlCaReco for track based alignment using J/Psi events
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlJpsiMuMu_Output.cff"
+
+# AlCaReco for track based alignment using Upsilon events
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlUpsilonMuMu_Output.cff"
+
+# AlCaReco for track based alignment using MinBias events
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMinBias_Output.cff"
+
 # AlCaReco for tracker calibration using MinBias events
   include "Calibration/TkAlCaRecoProducers/data/ALCARECOSiStripCalMinBias_Output.cff"
+
 
 # ECAL Calibration
 
@@ -45,6 +55,7 @@
 
 # HCAL calibration with isolated tracks
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalIsoTrk_Output.cff"
+  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalIsoTrkNoHLT_Output.cff"
 
 # HCAl calibration with min.bias
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalMinBias_Output.cff"
