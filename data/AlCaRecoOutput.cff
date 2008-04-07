@@ -1,4 +1,4 @@
-# last update: $Date: 2008/03/27 21:12:14 $ by $Author: futyand $
+# last update: $Date: 2008/04/02 23:38:04 $ by $Author: futyand $
 
 # Tracker Alignment
 
@@ -19,6 +19,9 @@
 
 # AlCaReco for track based alignment using MinBias events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMinBias_Output.cff"
+
+# AlCaReco for pixel calibration using muons
+  include "Calibration/TkAlCaRecoProducers/data/ALCARECOSiPixelLorentzAngle_Output.cff"
 
 # AlCaReco for tracker calibration using MinBias events
   include "Calibration/TkAlCaRecoProducers/data/ALCARECOSiStripCalMinBias_Output.cff"
