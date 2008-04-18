@@ -12,8 +12,10 @@
 #
 #  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
 #    include reconstruction, simulation and analysis
+
+#  FEVTSIMDIGIHLTDEBUG FEVTSIMHLTDEBUG
 #
-#  $Id: EventContent.cff,v 1.26 2008/03/10 23:46:45 dlange Exp $
+#  $Id: EventContent.cff,v 1.27 2008/03/23 21:37:39 dlange Exp $
 #
 #####################################################################
 
@@ -42,7 +44,6 @@ include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing_EventContent.c
 include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
 include "RecoParticleFlow/Configuration/data/RecoParticleFlow_EventContent.cff"
 include "L1Trigger/Configuration/data/L1Trigger_EventContent.cff"
-include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 include "RecoVertex/BeamSpotProducer/data/BeamSpot_EventContent.cff"
 
 ##DigiToRaw content
@@ -60,6 +61,15 @@ include "SimTracker/Configuration/data/SimTracker_EventContent.cff"
 include "SimMuon/Configuration/data/SimMuon_EventContent.cff"
 include "SimCalorimetry/Configuration/data/SimCalorimetry_EventContent.cff"
 include "SimGeneral/Configuration/data/SimGeneral_EventContent.cff"
+include "IOMC/RandomEngine/data/IOMC_EventContent.cff"
+
+########################################################################
+#
+# HLT
+#
+########################################################################
+
+include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 
 #####################################################################
 #
@@ -202,6 +212,7 @@ replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
 replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace FEVTSIMEventContent.outputCommands += IOMCFEVT.outputCommands
 
 #####################################################################
 #
@@ -227,6 +238,7 @@ replace FEVTSIMDIGIEventContent.outputCommands += SimCalorimetryFEVTDIGI.outputC
 replace FEVTSIMDIGIEventContent.outputCommands += L1TriggerFEVTDIGI.outputCommands 
 replace FEVTSIMDIGIEventContent.outputCommands += DigiToRawFEVT.outputCommands 
 replace FEVTSIMDIGIEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace FEVTSIMDIGIEventContent.outputCommands += IOMCFEVT.outputCommands
 
 
 #####################################################################
@@ -354,3 +366,23 @@ block RAWEventContent = {
      "keep  FEDRawDataCollection_rawDataCollector_*_*"
   }
 }
+
+
+### 
+block FEVTSIMHLTDEBUGEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+replace FEVTSIMHLTDEBUGEventContent.outputCommands += FEVTSIMEventContent.outputCommands
+replace FEVTSIMHLTDEBUGEventContent.outputCommands += HLTDebugFEVT.outputCommands
+
+
+block FEVTSIMDIGIHLTDEBUGEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+replace FEVTSIMDIGIHLTDEBUGEventContent.outputCommands += FEVTSIMDIGIEventContent.outputCommands
+replace FEVTSIMDIGIHLTDEBUGEventContent.outputCommands += HLTDebugFEVT.outputCommands
+
