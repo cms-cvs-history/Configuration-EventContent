@@ -1,4 +1,4 @@
-# last update: $Date: 2008/04/02 23:38:04 $ by $Author: futyand $
+# last update: $Date: 2008/04/07 21:26:40 $ by $Author: futyand $
 
 # Tracker Alignment
 
@@ -7,6 +7,9 @@
 
 # AlCaReco for track based alignment using Cosmic muon events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmics_Output.cff"
+
+# AlCaReco for track based alignment using Laser events
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlLAS_Output.cff"
 
 # AlCaReco for track based alignment using isoMu events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlMuonIsolated_Output.cff"
