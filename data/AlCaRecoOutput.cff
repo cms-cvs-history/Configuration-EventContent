@@ -1,4 +1,4 @@
-# last update: $Date: 2008/04/07 21:26:40 $ by $Author: futyand $
+# last update: $Date: 2008/05/12 19:46:07 $ by $Author: futyand $
 
 # Tracker Alignment
 
@@ -29,6 +29,8 @@
 # AlCaReco for tracker calibration using MinBias events
   include "Calibration/TkAlCaRecoProducers/data/ALCARECOSiStripCalMinBias_Output.cff"
 
+# AlCaReco for tracker based alignment using beam halo 
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlBeamHalo_Output.cff"
 
 # ECAL Calibration
 
@@ -75,6 +77,10 @@
 
 # Muon Alignment using CSC overlaps
   include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlOverlaps_Output.cff"
+
+# Muon Alignment using beam halo
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlBeamHaloOverlaps_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlBeamHalo_Output.cff"
 
 # RPC calibration
   include "CalibMuon/RPCCalibration/data/ALCARECORpcCalHLT_Output.cff"
