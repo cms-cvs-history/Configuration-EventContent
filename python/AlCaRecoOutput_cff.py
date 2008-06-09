@@ -1,13 +1,11 @@
 import FWCore.ParameterSet.Config as cms
 
-# last update: $Date: 2008/05/20 07:04:16 $ by $Author: hegner $
+# last update: $Date: 2008/04/07 21:26:40 $ by $Author: futyand $
 # Tracker Alignment
 # AlCaReco for track based alignment using ZMuMu events
 from Alignment.CommonAlignmentProducer.ALCARECOTkAlZMuMu_Output_cff import *
 # AlCaReco for track based alignment using Cosmic muon events
 from Alignment.CommonAlignmentProducer.ALCARECOTkAlCosmics_Output_cff import *
-# AlCaReco for track based alignment using Laser events
-from Alignment.CommonAlignmentProducer.ALCARECOTkAlLAS_Output_cff import *
 # AlCaReco for track based alignment using isoMu events
 from Alignment.CommonAlignmentProducer.ALCARECOTkAlMuonIsolated_Output_cff import *
 # AlCaReco for track based alignment using J/Psi events
@@ -20,8 +18,6 @@ from Alignment.CommonAlignmentProducer.ALCARECOTkAlMinBias_Output_cff import *
 from Calibration.TkAlCaRecoProducers.ALCARECOSiPixelLorentzAngle_Output_cff import *
 # AlCaReco for tracker calibration using MinBias events
 from Calibration.TkAlCaRecoProducers.ALCARECOSiStripCalMinBias_Output_cff import *
-# AlCaReco for tracker based alignment using beam halo 
-from Alignment.CommonAlignmentProducer.ALCARECOTkAlBeamHalo_Output_cff import *
 # ECAL Calibration
 # ECAL calibration with phi symmetry 
 from Calibration.EcalAlCaRecoProducers.ALCARECOEcalCalPhiSym_Output_cff import *
@@ -52,9 +48,6 @@ from Calibration.HcalAlCaRecoProducers.ALCARECOHcalCalHO_Output_cff import *
 from Alignment.CommonAlignmentProducer.ALCARECOMuAlZMuMu_Output_cff import *
 # Muon Alignment using CSC overlaps
 from Alignment.CommonAlignmentProducer.ALCARECOMuAlOverlaps_Output_cff import *
-# Muon Alignment using beam halo
-from Alignment.CommonAlignmentProducer.ALCARECOMuAlBeamHaloOverlaps_Output_cff import *
-from Alignment.CommonAlignmentProducer.ALCARECOMuAlBeamHalo_Output_cff import *
 # RPC calibration
 from CalibMuon.RPCCalibration.ALCARECORpcCalHLT_Output_cff import *
 
