@@ -4,18 +4,17 @@
 #
 # Data Tiers defined:
 #
-#  FEVT, RECO, AOD: 
+#  RAW , RECO, AOD: 
 #    include reconstruction content
 #
-#  FEVTSIM, RECOSIM, AODSIM: 
+#  RAWSIM, RECOSIM, AODSIM: 
 #    include reconstruction and simulation
 #
-#  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
-#    include reconstruction, simulation and analysis
-
-#  FEVTSIMDIGIHLTDEBUG FEVTSIMHLTDEBUG
+#  RAWDEBUG(RAWSIM+ALL_SIM_INFO), RAWDEBUGHLT(RAWDEBUG+HLTDEBUG), RECODEBUG(RECO+RAWDIGI)
 #
-#  $Id: EventContent.cff,v 1.27 2008/03/23 21:37:39 dlange Exp $
+#  FEVT (RAW+RECO), FEVTSIM (RAWSIM+RECOSIM), FEVTDEBUG (FEVTSIM+ALL_SIM_INFO), FEVTDEBUGHLT (FEVTDEBUG+HLTDEBUG)
+#
+#  $Id: EventContent.cff,v 1.28 2008/04/18 04:18:44 dlange Exp $
 #
 #####################################################################
 
@@ -73,54 +72,27 @@ include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 
 #####################################################################
 #
-# Analysis Systems
-#
-#####################################################################
-
-include "ElectroWeakAnalysis/Configuration/data/ElectroWeakAnalysis_EventContent.cff"
-include "HiggsAnalysis/Configuration/data/HiggsAnalysis_EventContent.cff"
-include "TopQuarkAnalysis/Configuration/data/TopQuarkAnalysis_EventContent.cff"
-
-#####################################################################
-#
 # DQM
 #
 #####################################################################
 
 include "DQMOffline/Configuration/data/DQMOffline_EventContent.cff"
 
-
+#####################################################################
 #
-# FEVT Data Tier definition
+# RAW Data Tier definition
 #
 #####################################################################
 
-block FEVTEventContent = {
+block RAWEventContent = {
   untracked vstring outputCommands = {
-     "drop *"
+     "drop *",
+     "keep  FEDRawDataCollection_rawDataCollector_*_*"
   }
 }
 
-replace FEVTEventContent.outputCommands += RecoLocalTrackerFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoLocalMuonFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoLocalCaloFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoEcalFEVT.outputCommands
-replace FEVTEventContent.outputCommands += TrackingToolsFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoTrackerFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoJetsFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoMETFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoMuonFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoBTauFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoBTagFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoTauTagFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
-replace FEVTEventContent.outputCommands += RecoParticleFlowFEVT.outputCommands
-replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
-replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
-replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
-replace FEVTEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace RAWEventContent.outputCommands += L1TriggerRAW.outputCommands 
+replace RAWEventContent.outputCommands += HLTriggerRAW.outputCommands 
 
 
 #####################################################################
@@ -191,54 +163,28 @@ replace AODEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands
 
 #####################################################################
 #
-# FEVTSIM Data Tier definition
+# RAWSIM Data Tier definition
 #
 #####################################################################
 
-block FEVTSIMEventContent = {
+block RAWSIMEventContent = {
   untracked vstring outputCommands = {
      "drop *"
   }
 }
 
-replace FEVTSIMEventContent.outputCommands += FEVTEventContent.outputCommands
-replace FEVTSIMEventContent.outputCommands += GeneratorInterfaceFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
-replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
-replace FEVTSIMEventContent.outputCommands += IOMCFEVT.outputCommands
-
-#####################################################################
-#
-# FEVTSIMDIGI Data Tier definition
-#
-#####################################################################
-
-block FEVTSIMDIGIEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-replace FEVTSIMDIGIEventContent.outputCommands += FEVTEventContent.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += GeneratorInterfaceFEVT.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += SimG4CoreFEVT.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += SimGeneralFEVT.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += RecoGenMETFEVT.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += SimTrackerFEVTDIGI.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += SimMuonFEVTDIGI.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += SimCalorimetryFEVTDIGI.outputCommands
-replace FEVTSIMDIGIEventContent.outputCommands += L1TriggerFEVTDIGI.outputCommands 
-replace FEVTSIMDIGIEventContent.outputCommands += DigiToRawFEVT.outputCommands 
-replace FEVTSIMDIGIEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
-replace FEVTSIMDIGIEventContent.outputCommands += IOMCFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += RAWEventContent.outputCommands
+replace RAWSIMEventContent.outputCommands += SimG4CoreRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimTrackerRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimMuonRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimCalorimetryRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimGeneralRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += GeneratorInterfaceRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
+replace RAWSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace RAWSIMEventContent.outputCommands += IOMCRAW.outputCommands
 
 
 #####################################################################
@@ -255,12 +201,12 @@ block RECOSIMEventContent = {
 
 replace RECOSIMEventContent.outputCommands += RECOEventContent.outputCommands
 replace RECOSIMEventContent.outputCommands += GeneratorInterfaceRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
-replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
-replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
 replace RECOSIMEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
 
@@ -287,102 +233,178 @@ replace AODSIMEventContent.outputCommands += RecoGenMETAOD.outputCommands
 replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
 replace AODSIMEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands 
 
+
 #####################################################################
 #
-# FEVTSIMANA Data Tier definition
+# FEVT Data Tier definition
 #
 #####################################################################
 
-block FEVTSIMANAEventContent = {
+block FEVTEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+replace FEVTEventContent.outputCommands += RAWEventContent.outputCommands
+#RECOEventContent
+replace FEVTEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoLocalMuonRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoLocalCaloRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoEcalRECO.outputCommands
+replace FEVTEventContent.outputCommands += TrackingToolsRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoTrackerRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoJetsRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoMETRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoMuonRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoBTauRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoBTagRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoTauTagRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoVertexRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoEgammaRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
+replace FEVTEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
+replace FEVTEventContent.outputCommands += BeamSpotRECO.outputCommands
+replace FEVTEventContent.outputCommands += L1TriggerRECO.outputCommands 
+replace FEVTEventContent.outputCommands += HLTriggerRECO.outputCommands 
+replace FEVTEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
+
+
+#####################################################################
+#
+# FEVTSIM Data Tier definition
+#
+#####################################################################
+
+block FEVTSIMEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+#RAWSIMEventContent
+replace FEVTSIMEventContent.outputCommands += RAWEventContent.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimG4CoreRAW.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimTrackerRAW.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimMuonRAW.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimCalorimetryRAW.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimGeneralRAW.outputCommands
+replace FEVTSIMEventContent.outputCommands += GeneratorInterfaceRAW.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands 
+replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace FEVTSIMEventContent.outputCommands += IOMCRAW.outputCommands
+#RECOSIMEventContent
+replace FEVTSIMEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoLocalMuonRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoLocalCaloRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoEcalRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += TrackingToolsRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoTrackerRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoJetsRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoMETRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoMuonRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoBTauRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoBTagRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoTauTagRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoVertexRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoEgammaRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += BeamSpotRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += L1TriggerRECO.outputCommands 
+replace FEVTSIMEventContent.outputCommands += HLTriggerRECO.outputCommands 
+replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
+replace FEVTSIMEventContent.outputCommands += GeneratorInterfaceRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimMuonRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
+replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
+
+
+#####################################################################
+#
+# RAWDEBUG Data Tier definition
+#
+#####################################################################
+
+block RAWDEBUGEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+#RAWSIMEventContent
+replace RAWDEBUGEventContent.outputCommands += RAWEventContent.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimG4CoreRAW.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimTrackerRAW.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimMuonRAW.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimCalorimetryRAW.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimGeneralRAW.outputCommands
+replace RAWDEBUGEventContent.outputCommands += GeneratorInterfaceRAW.outputCommands
+replace RAWDEBUGEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace RAWDEBUGEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace RAWDEBUGEventContent.outputCommands += DigiToRawFEVT.outputCommands 
+replace RAWDEBUGEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace RAWDEBUGEventContent.outputCommands += IOMCRAW.outputCommands
+#Additional Simulation INFO
+replace RAWDEBUGEventContent.outputCommands += L1TriggerFEVTDEBUG.outputCommands 
+replace RAWDEBUGEventContent.outputCommands += SimGeneralFEVTDEBUG.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimTrackerFEVTDEBUG.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimMuonFEVTDEBUG.outputCommands
+replace RAWDEBUGEventContent.outputCommands += SimCalorimetryFEVTDEBUG.outputCommands
+
+#####################################################################
+#
+# RAWDEBUGHLT Data Tier definition
+#
+#####################################################################
+
+block RAWDEBUGHLTEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+#RAWDEBUGEventContent
+replace RAWDEBUGHLTEventContent.outputCommands += RAWDEBUGEventContent.outputCommands
+replace RAWDEBUGHLTEventContent.outputCommands += HLTDebugRAW.outputCommands
+
+
+#####################################################################
+#
+# FEVTDEBUG Data Tier definition
+#
+#####################################################################
+
+block FEVTDEBUGEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+replace FEVTDEBUGEventContent.outputCommands += FEVTSIMEventContent.outputCommands
+replace FEVTDEBUGEventContent.outputCommands += L1TriggerFEVTDEBUG.outputCommands 
+replace FEVTDEBUGEventContent.outputCommands += SimGeneralFEVTDEBUG.outputCommands
+replace FEVTDEBUGEventContent.outputCommands += SimTrackerFEVTDEBUG.outputCommands
+replace FEVTDEBUGEventContent.outputCommands += SimMuonFEVTDEBUG.outputCommands
+replace FEVTDEBUGEventContent.outputCommands += SimCalorimetryFEVTDEBUG.outputCommands
+
+
+
+#####################################################################
+#
+# FEVTDEBUGHLT Data Tier definition
+#
+#####################################################################
+
+block FEVTDEBUGHLTEventContent = {
   untracked vstring outputCommands = {
      "drop *"
   }
 }
 
-replace FEVTSIMANAEventContent.outputCommands += FEVTSIMEventContent.outputCommands
-replace FEVTSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
-replace FEVTSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
-replace FEVTSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
+replace FEVTDEBUGHLTEventContent.outputCommands += FEVTDEBUGEventContent.outputCommands
+replace FEVTDEBUGHLTEventContent.outputCommands += HLTDebugFEVT.outputCommands
 
-#####################################################################
-#
-# FEVTSIMDIGIANA Data Tier definition
-#
-#####################################################################
-
-block FEVTSIMDIGIANAEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-replace FEVTSIMDIGIANAEventContent.outputCommands += FEVTSIMDIGIEventContent.outputCommands
-replace FEVTSIMDIGIANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
-replace FEVTSIMDIGIANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
-replace FEVTSIMDIGIANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
-
-
-#####################################################################
-#
-# RECOSIMANA Data Tier definition
-#
-#####################################################################
-
-block RECOSIMANAEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-replace RECOSIMANAEventContent.outputCommands += RECOSIMEventContent.outputCommands
-replace RECOSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
-replace RECOSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
-replace RECOSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
-
-
-#####################################################################
-#
-# AODSIMANA Data Tier definition
-#
-#####################################################################
-
-block AODSIMANAEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-
-replace AODSIMANAEventContent.outputCommands += AODSIMEventContent.outputCommands
-replace AODSIMANAEventContent.outputCommands += ElectroWeakAnalysisEventContent.outputCommands
-replace AODSIMANAEventContent.outputCommands += HiggsAnalysisEventContent.outputCommands
-replace AODSIMANAEventContent.outputCommands += TopQuarkAnalysisEventContent.outputCommands
-
-
-###### RAW only data tier
-
-block RAWEventContent = {
-  untracked vstring outputCommands = {
-     "drop *",
-     "keep  FEDRawDataCollection_rawDataCollector_*_*"
-  }
-}
-
-
-### 
-block FEVTSIMHLTDEBUGEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-replace FEVTSIMHLTDEBUGEventContent.outputCommands += FEVTSIMEventContent.outputCommands
-replace FEVTSIMHLTDEBUGEventContent.outputCommands += HLTDebugFEVT.outputCommands
-
-
-block FEVTSIMDIGIHLTDEBUGEventContent = {
-  untracked vstring outputCommands = {
-     "drop *"
-  }
-}
-replace FEVTSIMDIGIHLTDEBUGEventContent.outputCommands += FEVTSIMDIGIEventContent.outputCommands
-replace FEVTSIMDIGIHLTDEBUGEventContent.outputCommands += HLTDebugFEVT.outputCommands
 
