@@ -15,7 +15,7 @@
 
 #  FEVTSIMDIGIHLTDEBUG FEVTSIMHLTDEBUG
 #
-#  $Id: EventContentGR.cff,v 1.4 2008/05/14 09:12:27 arizzi Exp $
+#  $Id: EventContentCosmics.cff,v 1.1 2008/06/09 08:36:35 arizzi Exp $
 #
 #####################################################################
 
@@ -82,9 +82,9 @@ replace FEVTEventContent.outputCommands += RecoMuonFEVT.outputCommands
 #replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
 
 replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
-replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
+#replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
 replace FEVTEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
-replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
+#replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
 
 
 #####################################################################
@@ -148,8 +148,6 @@ replace AODEventContent.outputCommands += RecoMuonAOD.outputCommands
 #replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
 #replace AODEventContent.outputCommands += RecoParticleFlowAOD.outputCommands
 replace AODEventContent.outputCommands += BeamSpotAOD.outputCommands
-replace AODEventContent.outputCommands += L1TriggerAOD.outputCommands
-replace AODEventContent.outputCommands += HLTriggerAOD.outputCommands
 replace AODEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands 
 
 
@@ -159,12 +157,14 @@ replace AODEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands
 block RAWEventContent = {
   untracked vstring outputCommands = {
      "drop *",
-     "keep  FEDRawDataCollection_rawDataCollector_*_*"
- 
-}
+     "keep  FEDRawDataCollection_rawDataCollector_*_*",
+     "keep  FEDRawDataCollection_source_*_*"
+  }
 }
 
-replace RAWEventContent.outputCommands += HLTriggerFEVT.outputCommands
+replace RAWEventContent.outputCommands += L1TriggerRAW.outputCommands
+replace RAWEventContent.outputCommands += HLTriggerRAW.outputCommands
+
 
 
 include "GeneratorInterface/Configuration/data/GeneratorInterface_EventContent.cff"
@@ -179,28 +179,30 @@ include "EventFilter/Configuration/data/DigiToRaw_EventContent.cff"
 
 #####################################################################
 #
-# FEVTSIM Data Tier definition
+# RAWSIM Data Tier definition
 #
 #####################################################################
 
-block FEVTSIMEventContent = {
+block RAWSIMEventContent = {
   untracked vstring outputCommands = {
      "drop *"
   }
 }
 
-replace FEVTSIMEventContent.outputCommands += FEVTEventContent.outputCommands
-replace FEVTSIMEventContent.outputCommands += GeneratorInterfaceFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands
-replace FEVTSIMEventContent.outputCommands += IOMCFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += RAWEventContent.outputCommands
+replace RAWSIMEventContent.outputCommands += SimG4CoreRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimTrackerRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimMuonRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimCalorimetryRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += SimGeneralRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += GeneratorInterfaceRAW.outputCommands
+replace RAWSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands
+replace RAWSIMEventContent.outputCommands += IOMCRAW.outputCommands
+
+
 
 
 #####################################################################
