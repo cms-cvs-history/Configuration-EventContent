@@ -14,7 +14,7 @@
 #
 #  FEVT (RAW+RECO), FEVTSIM (RAWSIM+RECOSIM), FEVTDEBUG (FEVTSIM+ALL_SIM_INFO), FEVTDEBUGHLT (FEVTDEBUG+HLTDEBUG)
 #
-#  $Id: EventContent.cff,v 1.28 2008/04/18 04:18:44 dlange Exp $
+#  $Id: EventContent.cff,v 1.29 2008/06/13 07:32:05 fambrogl Exp $
 #
 #####################################################################
 
@@ -87,7 +87,8 @@ include "DQMOffline/Configuration/data/DQMOffline_EventContent.cff"
 block RAWEventContent = {
   untracked vstring outputCommands = {
      "drop *",
-     "keep  FEDRawDataCollection_rawDataCollector_*_*"
+     "keep  FEDRawDataCollection_rawDataCollector_*_*",
+     "keep  FEDRawDataCollection_source_*_*"
   }
 }
 
