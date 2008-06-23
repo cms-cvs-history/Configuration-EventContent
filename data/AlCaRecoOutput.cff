@@ -1,4 +1,4 @@
-# last update: $Date: 2008/05/12 19:46:07 $ by $Author: futyand $
+# last update: $Date: 2008/05/20 07:04:16 $ by $Author: hegner $
 
 # Tracker Alignment
 
@@ -7,6 +7,9 @@
 
 # AlCaReco for track based alignment using Cosmic muon events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmics_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmicsHLT_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmics0T_Output.cff"
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlCosmics0THLT_Output.cff"
 
 # AlCaReco for track based alignment using Laser events
   include "Alignment/CommonAlignmentProducer/data/ALCARECOTkAlLAS_Output.cff"
@@ -65,15 +68,21 @@
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalIsoTrk_Output.cff"
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalIsoTrkNoHLT_Output.cff"
 
-# HCAl calibration with min.bias
+# HCAL calibration with min.bias
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalMinBias_Output.cff"
 
-# HCAl calibration with Zmuu (HO)
+# HCAL calibration with Zmuu (HO)
 #  include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalZMuMu_Output.cff"
   include "Calibration/HcalAlCaRecoProducers/data/ALCARECOHcalCalHO_Output.cff"
 
-# Muon Alignment with Zmumu
-  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlZMuMu_Output.cff"
+# Muon Alignment with cosmics
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlZeroFieldGlobalCosmics_Output.cff"
+
+# Muon calibration with minbias
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuCaliMinBias_Output.cff"
+
+# Muon Alignment with isolated muons
+  include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlCalIsolatedMu_Output.cff"
 
 # Muon Alignment using CSC overlaps
   include "Alignment/CommonAlignmentProducer/data/ALCARECOMuAlOverlaps_Output.cff"
