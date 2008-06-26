@@ -10,11 +10,11 @@
 #  RAWSIM, RECOSIM, AODSIM: 
 #    include reconstruction and simulation
 #
-#  RAWDEBUG(RAWSIM+ALL_SIM_INFO), RAWDEBUGHLT(RAWDEBUG+HLTDEBUG), RECODEBUG(RECO+RAWDIGI)
+#  RAWDEBUG(RAWSIM+ALL_SIM_INFO), RAWDEBUGHLT(RAWDEBUG+HLTDEBUG)
 #
 #  FEVT (RAW+RECO), FEVTSIM (RAWSIM+RECOSIM), FEVTDEBUG (FEVTSIM+ALL_SIM_INFO), FEVTDEBUGHLT (FEVTDEBUG+HLTDEBUG)
 #
-#  $Id: EventContent.cff,v 1.29 2008/06/13 07:32:05 fambrogl Exp $
+#  $Id: EventContent.cff,v 1.30 2008/06/20 06:57:11 arizzi Exp $
 #
 #####################################################################
 
