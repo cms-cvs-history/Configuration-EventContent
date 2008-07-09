@@ -15,7 +15,7 @@
 
 #  FEVTSIMDIGIHLTDEBUG FEVTSIMHLTDEBUG
 #
-#  $Id: EventContentCosmics.cff,v 1.1 2008/06/09 08:36:35 arizzi Exp $
+#  $Id: EventContentCosmics.cff,v 1.2 2008/06/19 12:12:27 arizzi Exp $
 #
 #####################################################################
 
@@ -48,7 +48,7 @@ include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
 #include "RecoTauTag/Configuration/data/RecoTauTag_EventContent.cff"
 #include "RecoVertex/Configuration/data/RecoVertex_EventContent.cff"
 #include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing_EventContent.cff"
-#include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
+include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
 #include "RecoParticleFlow/Configuration/data/RecoParticleFlow_EventContent.cff"
 
 
@@ -78,7 +78,7 @@ replace FEVTEventContent.outputCommands += RecoMuonFEVT.outputCommands
 #replace FEVTEventContent.outputCommands += RecoBTagFEVT.outputCommands
 #replace FEVTEventContent.outputCommands += RecoTauTagFEVT.outputCommands
 #replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
-#replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
 #replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
 
 replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
@@ -112,7 +112,7 @@ replace RECOEventContent.outputCommands += RecoMuonRECO.outputCommands
 #replace RECOEventContent.outputCommands += RecoBTagRECO.outputCommands
 #replace RECOEventContent.outputCommands += RecoTauTagRECO.outputCommands
 #replace RECOEventContent.outputCommands += RecoVertexRECO.outputCommands
-#replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
 #replace RECOEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
 #replace RECOEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
 replace RECOEventContent.outputCommands += BeamSpotRECO.outputCommands
