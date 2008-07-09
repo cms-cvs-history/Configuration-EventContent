@@ -1,0 +1,252 @@
+#####################################################################
+#
+# Event Content definition
+#
+# Data Tiers defined:
+#
+#  FEVT, RECO, AOD: 
+#    include reconstruction content
+#
+#  FEVTSIM, RECOSIM, AODSIM: 
+#    include reconstruction and simulation
+#
+#  FEVTSIMANA, RECOSIMANA, AODSIMANA: 
+#    include reconstruction, simulation and analysis
+
+#  FEVTSIMDIGIHLTDEBUG FEVTSIMHLTDEBUG
+#
+#  $Id: EventContentCosmics.cff,v 1.1 2008/06/09 08:36:35 arizzi Exp $
+#
+#####################################################################
+
+
+
+#####################################################################
+#
+# Recontruction Systems
+#
+#####################################################################
+include "RecoTracker/Configuration/data/RecoTrackerP5_EventContent.cff"
+include "RecoMuon/Configuration/data/RecoMuonCosmics_EventContent.cff"
+include "RecoLocalMuon/Configuration/data/RecoLocalMuonCosmics_EventContent.cff"
+include "RecoEcal/Configuration/data/RecoEcal_EventContentCosmics.cff"
+include "RecoLocalCalo/Configuration/data/RecoLocalCalo_EventContentCosmics.cff"
+include "RecoLocalTracker/Configuration/data/RecoLocalTracker_Cosmics_EventContent.cff"
+
+include "RecoJets/Configuration/data/RecoJets_EventContent.cff"
+include "RecoMET/Configuration/data/RecoMET_EventContent.cff"
+include "L1Trigger/Configuration/data/L1Trigger_EventContent.cff"
+include "RecoVertex/BeamSpotProducer/data/BeamSpot_EventContent.cff"
+include "EventFilter/Configuration/data/DigiToRaw_EventContent.cff"
+include "DQMOffline/Configuration/data/DQMOffline_EventContent.cff"
+include "HLTrigger/Configuration/data/HLTrigger_EventContent.cff"
+
+#not in GR
+#include "TrackingTools/Configuration/data/TrackingTools_EventContent.cff"
+#include "RecoBTau/Configuration/data/RecoBTau_EventContent.cff"
+#include "RecoBTag/Configuration/data/RecoBTag_EventContent.cff"
+#include "RecoTauTag/Configuration/data/RecoTauTag_EventContent.cff"
+#include "RecoVertex/Configuration/data/RecoVertex_EventContent.cff"
+#include "RecoPixelVertexing/Configuration/data/RecoPixelVertexing_EventContent.cff"
+include "RecoEgamma/Configuration/data/RecoEgamma_EventContent.cff"
+#include "RecoParticleFlow/Configuration/data/RecoParticleFlow_EventContent.cff"
+
+
+
+#
+# FEVT Data Tier definition
+#
+#####################################################################
+
+block FEVTEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace FEVTEventContent.outputCommands += RecoLocalTrackerFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoLocalMuonFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoLocalCaloFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoEcalFEVT.outputCommands
+#replace FEVTEventContent.outputCommands += TrackingToolsFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoTrackerFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoJetsFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoMETFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoMuonFEVT.outputCommands
+
+#replace FEVTEventContent.outputCommands += RecoBTauFEVT.outputCommands
+#replace FEVTEventContent.outputCommands += RecoBTagFEVT.outputCommands
+#replace FEVTEventContent.outputCommands += RecoTauTagFEVT.outputCommands
+#replace FEVTEventContent.outputCommands += RecoVertexFEVT.outputCommands
+replace FEVTEventContent.outputCommands += RecoEgammaFEVT.outputCommands
+#replace FEVTEventContent.outputCommands += RecoPixelVertexingFEVT.outputCommands
+
+replace FEVTEventContent.outputCommands += BeamSpotFEVT.outputCommands
+replace FEVTEventContent.outputCommands += L1TriggerFEVT.outputCommands 
+replace FEVTEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands 
+replace FEVTEventContent.outputCommands += HLTriggerFEVT.outputCommands 
+
+
+#####################################################################
+#
+# RECO Data Tier definition
+#
+#####################################################################
+
+block RECOEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace RECOEventContent.outputCommands += RecoLocalTrackerRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoLocalMuonRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoLocalCaloRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoEcalRECO.outputCommands
+#replace RECOEventContent.outputCommands += TrackingToolsRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoTrackerRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoJetsRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoMETRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoMuonRECO.outputCommands
+#replace RECOEventContent.outputCommands += RecoBTauRECO.outputCommands
+#replace RECOEventContent.outputCommands += RecoBTagRECO.outputCommands
+#replace RECOEventContent.outputCommands += RecoTauTagRECO.outputCommands
+#replace RECOEventContent.outputCommands += RecoVertexRECO.outputCommands
+replace RECOEventContent.outputCommands += RecoEgammaRECO.outputCommands
+#replace RECOEventContent.outputCommands += RecoPixelVertexingRECO.outputCommands
+#replace RECOEventContent.outputCommands += RecoParticleFlowRECO.outputCommands
+replace RECOEventContent.outputCommands += BeamSpotRECO.outputCommands
+replace RECOEventContent.outputCommands += L1TriggerRECO.outputCommands 
+replace RECOEventContent.outputCommands += HLTriggerRECO.outputCommands 
+replace RECOEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands 
+
+#####################################################################
+#
+# AOD Data Tier definition
+#
+#####################################################################
+
+block AODEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace AODEventContent.outputCommands += RecoLocalTrackerAOD.outputCommands
+replace AODEventContent.outputCommands += RecoLocalMuonAOD.outputCommands
+replace AODEventContent.outputCommands += RecoLocalCaloAOD.outputCommands
+replace AODEventContent.outputCommands += RecoEcalAOD.outputCommands
+#replace AODEventContent.outputCommands += TrackingToolsAOD.outputCommands
+replace AODEventContent.outputCommands += RecoTrackerAOD.outputCommands
+replace AODEventContent.outputCommands += RecoJetsAOD.outputCommands
+replace AODEventContent.outputCommands += RecoMETAOD.outputCommands
+replace AODEventContent.outputCommands += RecoMuonAOD.outputCommands
+#replace AODEventContent.outputCommands += RecoBTauAOD.outputCommands
+#replace AODEventContent.outputCommands += RecoBTagAOD.outputCommands
+#replace AODEventContent.outputCommands += RecoTauTagAOD.outputCommands
+#replace AODEventContent.outputCommands += RecoVertexAOD.outputCommands
+#replace AODEventContent.outputCommands += RecoEgammaAOD.outputCommands
+#replace AODEventContent.outputCommands += RecoParticleFlowAOD.outputCommands
+replace AODEventContent.outputCommands += BeamSpotAOD.outputCommands
+replace AODEventContent.outputCommands += L1TriggerAOD.outputCommands
+replace AODEventContent.outputCommands += HLTriggerAOD.outputCommands
+replace AODEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands 
+
+
+
+###### RAW only data tier
+
+block RAWEventContent = {
+  untracked vstring outputCommands = {
+     "drop *",
+     "keep  FEDRawDataCollection_rawDataCollector_*_*"
+ 
+}
+}
+
+replace RAWEventContent.outputCommands += HLTriggerFEVT.outputCommands
+
+
+include "GeneratorInterface/Configuration/data/GeneratorInterface_EventContent.cff"
+include "SimG4Core/Configuration/data/SimG4Core_EventContent.cff"
+include "SimTracker/Configuration/data/SimTracker_EventContent.cff"
+include "SimMuon/Configuration/data/SimMuon_EventContent.cff"
+include "SimCalorimetry/Configuration/data/SimCalorimetry_EventContent.cff"
+include "SimGeneral/Configuration/data/SimGeneral_EventContent.cff"
+include "IOMC/RandomEngine/data/IOMC_EventContent.cff"
+include "EventFilter/Configuration/data/DigiToRaw_EventContent.cff"
+
+
+#####################################################################
+#
+# FEVTSIM Data Tier definition
+#
+#####################################################################
+
+block FEVTSIMEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace FEVTSIMEventContent.outputCommands += FEVTEventContent.outputCommands
+replace FEVTSIMEventContent.outputCommands += GeneratorInterfaceFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimG4CoreFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimTrackerFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimMuonFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimCalorimetryFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenJetsFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += SimGeneralFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += RecoGenMETFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += DigiToRawFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += MEtoEDMConverterFEVT.outputCommands
+replace FEVTSIMEventContent.outputCommands += IOMCFEVT.outputCommands
+
+
+#####################################################################
+#
+# RECOSIM Data Tier definition
+#
+#####################################################################
+
+block RECOSIMEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace RECOSIMEventContent.outputCommands += RECOEventContent.outputCommands
+replace RECOSIMEventContent.outputCommands += GeneratorInterfaceRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += SimG4CoreRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += SimTrackerRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += SimMuonRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += SimCalorimetryRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenMETRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += RecoGenJetsRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += SimGeneralRECO.outputCommands
+replace RECOSIMEventContent.outputCommands += MEtoEDMConverterRECO.outputCommands
+
+#####################################################################
+#
+# AODSIM Data Tier definition
+#
+#####################################################################
+
+block AODSIMEventContent = {
+  untracked vstring outputCommands = {
+     "drop *"
+  }
+}
+
+replace AODSIMEventContent.outputCommands += AODEventContent.outputCommands
+replace AODSIMEventContent.outputCommands += GeneratorInterfaceAOD.outputCommands
+replace AODSIMEventContent.outputCommands += SimG4CoreAOD.outputCommands
+replace AODSIMEventContent.outputCommands += SimTrackerAOD.outputCommands
+replace AODSIMEventContent.outputCommands += SimMuonAOD.outputCommands
+replace AODSIMEventContent.outputCommands += SimCalorimetryAOD.outputCommands
+replace AODSIMEventContent.outputCommands += RecoGenJetsAOD.outputCommands
+replace AODSIMEventContent.outputCommands += RecoGenMETAOD.outputCommands
+replace AODSIMEventContent.outputCommands += SimGeneralAOD.outputCommands
+replace AODSIMEventContent.outputCommands += MEtoEDMConverterAOD.outputCommands
+
+
