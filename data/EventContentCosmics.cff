@@ -15,7 +15,7 @@
 
 #  FEVTSIMDIGIHLTDEBUG FEVTSIMHLTDEBUG
 #
-#  $Id: EventContentCosmics.cff,v 1.1 2008/06/09 08:36:35 arizzi Exp $
+#  $Id: EventContentCosmics.cff,v 1.5 2008/07/09 15:22:02 rahatlou Exp $
 #
 #####################################################################
 
@@ -35,7 +35,7 @@ include "RecoLocalTracker/Configuration/data/RecoLocalTracker_Cosmics_EventConte
 
 include "RecoJets/Configuration/data/RecoJets_EventContent.cff"
 include "RecoMET/Configuration/data/RecoMET_EventContent.cff"
-include "L1Trigger/Configuration/data/L1Trigger_EventContent.cff"
+include "L1Trigger/Configuration/data/L1Trigger_EventContentCosmics.cff"
 include "RecoVertex/BeamSpotProducer/data/BeamSpot_EventContent.cff"
 include "EventFilter/Configuration/data/DigiToRaw_EventContent.cff"
 include "DQMOffline/Configuration/data/DQMOffline_EventContent.cff"
