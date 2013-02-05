@@ -25,7 +25,7 @@ import FWCore.ParameterSet.Config as cms
 #
 #  FEVT (RAW+RECO), FEVTSIM (RAWSIM+RECOSIM), FEVTDEBUG (FEVTSIM+ALL_SIM_INFO), FEVTDEBUGHLT (FEVTDEBUG+HLTDEBUG)
 #
-#  $Id: EventContent_cff.py,v 1.51 2012/06/05 19:09:56 chrjones Exp $
+#  $Id: EventContent_cff.py,v 1.50 2012/03/30 17:07:33 cerminar Exp $
 #
 #
 #
@@ -51,7 +51,6 @@ from RecoEgamma.Configuration.RecoEgamma_EventContent_cff import *
 from RecoParticleFlow.Configuration.RecoParticleFlow_EventContent_cff import *
 from L1Trigger.Configuration.L1Trigger_EventContent_cff import *
 from RecoVertex.BeamSpotProducer.BeamSpot_EventContent_cff import *
-from CommonTools.ParticleFlow.EITopPAG_EventContent_cff import EITopPAGEventContent
 
 # raw2digi that are already the final RECO/AOD products
 from EventFilter.ScalersRawToDigi.Scalers_EventContent_cff import * 
@@ -148,9 +147,7 @@ RAWRECOEventContent = cms.PSet(
 #
 AODEventContent = cms.PSet(
     outputCommands = cms.untracked.vstring('drop *'),
-    eventAutoFlushCompressedSize=cms.untracked.int32(15*1024*1024),
-    compressionAlgorithm=cms.untracked.string("LZMA"),
-    compressionLevel=cms.untracked.int32(4)
+    eventAutoFlushCompressedSize=cms.untracked.int32(15*1024*1024)
 )
 #
 #
@@ -219,9 +216,7 @@ GENRAWEventContent = cms.PSet(
 #
 AODSIMEventContent = cms.PSet(
     outputCommands = cms.untracked.vstring('drop *'),
-    eventAutoFlushCompressedSize=cms.untracked.int32(15*1024*1024),
-    compressionAlgorithm=cms.untracked.string("LZMA"),
-    compressionLevel=cms.untracked.int32(4)
+    eventAutoFlushCompressedSize=cms.untracked.int32(15*1024*1024)
 )
 #
 #
@@ -426,7 +421,6 @@ RECOEventContent.outputCommands.extend(HLTriggerRECO.outputCommands)
 RECOEventContent.outputCommands.extend(MEtoEDMConverterRECO.outputCommands)
 RECOEventContent.outputCommands.extend(EvtScalersRECO.outputCommands)
 RECOEventContent.outputCommands.extend(CommonEventContent.outputCommands)
-RECOEventContent.outputCommands.extend(EITopPAGEventContent.outputCommands)
 
 RAWRECOEventContent.outputCommands.extend(RECOEventContent.outputCommands)
 RAWRECOEventContent.outputCommands.extend(cms.untracked.vstring(
@@ -456,7 +450,6 @@ AODEventContent.outputCommands.extend(MEtoEDMConverterAOD.outputCommands)
 AODEventContent.outputCommands.extend(EvtScalersAOD.outputCommands)
 AODEventContent.outputCommands.extend(CommonEventContent.outputCommands)
 AODEventContent.outputCommands.extend(SimGeneralAOD.outputCommands)
-AODEventContent.outputCommands.extend(EITopPAGEventContent.outputCommands)
 
 RAWSIMEventContent.outputCommands.extend(RAWEventContent.outputCommands)
 RAWSIMEventContent.outputCommands.extend(SimG4CoreRAW.outputCommands)
@@ -564,7 +557,6 @@ FEVTEventContent.outputCommands.extend(HLTriggerRECO.outputCommands)
 FEVTEventContent.outputCommands.extend(MEtoEDMConverterRECO.outputCommands)
 FEVTEventContent.outputCommands.extend(EvtScalersRECO.outputCommands)
 FEVTEventContent.outputCommands.extend(CommonEventContent.outputCommands)
-FEVTEventContent.outputCommands.extend(EITopPAGEventContent.outputCommands)
 
 FEVTHLTALLEventContent.outputCommands.extend(FEVTEventContent.outputCommands)
 FEVTHLTALLEventContent.outputCommands.append('keep *_*_*_HLT')
@@ -612,7 +604,6 @@ FEVTSIMEventContent.outputCommands.extend(SimCalorimetryRECO.outputCommands)
 FEVTSIMEventContent.outputCommands.extend(SimGeneralRECO.outputCommands)
 FEVTSIMEventContent.outputCommands.extend(MEtoEDMConverterRECO.outputCommands)
 FEVTSIMEventContent.outputCommands.extend(EvtScalersRECO.outputCommands)
-FEVTSIMEventContent.outputCommands.extend(EITopPAGEventContent.outputCommands)
 RAWDEBUGEventContent.outputCommands.extend(RAWSIMEventContent.outputCommands)
 RAWDEBUGEventContent.outputCommands.extend(SimTrackerDEBUG.outputCommands)
 RAWDEBUGEventContent.outputCommands.extend(SimGeneralFEVTDEBUG.outputCommands)
@@ -638,6 +629,7 @@ ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlCosmics0T_noDrop.outpu
 ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlCosmics0THLT_noDrop.outputCommands)
 ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlLAS_noDrop.outputCommands)
 ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlMuonIsolated_noDrop.outputCommands)
+ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlMuonIsolatedPA_noDrop.outputCommands)
 ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlJpsiMuMu_noDrop.outputCommands)
 ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlUpsilonMuMu_noDrop.outputCommands)
 ALCARECOEventContent.outputCommands.extend(OutALCARECOTkAlMinBias_noDrop.outputCommands)
