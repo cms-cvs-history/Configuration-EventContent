@@ -25,7 +25,7 @@ import FWCore.ParameterSet.Config as cms
 #
 #  FEVT (RAW+RECO), FEVTSIM (RAWSIM+RECOSIM), FEVTDEBUG (FEVTSIM+ALL_SIM_INFO), FEVTDEBUGHLT (FEVTDEBUG+HLTDEBUG)
 #
-#  $Id: EventContent_cff.py,v 1.50 2012/03/30 17:07:33 cerminar Exp $
+#  $Id: EventContent_cff.py,v 1.50.2.1 2013/02/05 10:11:09 cerminar Exp $
 #
 #
 #
@@ -671,6 +671,7 @@ REPACKRAWEventContent.outputCommands.extend(['drop FEDRawDataCollection_source_*
 #from modules in Configuration.StandardSequence.Generator_cff fixGenInfo
 REGENEventContent = cms.PSet(
     inputCommands=cms.untracked.vstring(
+      'keep *',
       'drop *_genParticles_*_*',
       'drop *_genParticlesForJets_*_*',
       'drop *_kt4GenJets_*_*',
